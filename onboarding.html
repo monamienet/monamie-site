@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding de parceiro — MonAmie</title>
+    <meta name="description" content="Envie os dados da sua marca para criarmos a sua versão do aplicativo MonAmie.">
+    <link rel="canonical" href="https://monamienet.org/onboarding/">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo-mark.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4fd',
+                            100: '#e1e9fa',
+                            200: '#c8d8f6',
+                            300: '#a2c0f0',
+                            400: '#75a0e6',
+                            500: '#527edc',
+                            600: '#385ea0',
+                            700: '#315399',
+                            800: '#28437d',
+                            900: '#233866',
+                            950: '#172342',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafbfc;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(49, 83, 153, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Section headings (same badge style as the policy pages) */
+        .form-card h2 {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+        .form-card h2 .num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #315399;
+            background: #f0f4fd;
+            border: 1px solid #c8d8f6;
+            border-radius: 0.5rem;
+            padding: 0.1rem 0.5rem;
+            flex-shrink: 0;
+            position: relative;
+            top: -2px;
+        }
+
+        /* Text inputs */
+        .field-input {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            background: #fff;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.95rem;
+            color: #0f172a;
+            transition: border-color .15s, box-shadow .15s;
+        }
+        .field-input::placeholder { color: #94a3b8; }
+        .field-input:focus {
+            outline: none;
+            border-color: #527edc;
+            box-shadow: 0 0 0 3px rgba(82, 126, 220, 0.18);
+        }
+        .has-error .field-input,
+        .has-error .field-frame { border-color: #f43f5e; }
+        .has-error .field-input:focus { box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15); }
+
+        /* Input with the fixed "MonAmie" prefix */
+        .field-frame {
+            display: flex;
+            align-items: stretch;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            background: #fff;
+            overflow: hidden;
+            transition: border-color .15s, box-shadow .15s;
+        }
+        .field-frame:focus-within {
+            border-color: #527edc;
+            box-shadow: 0 0 0 3px rgba(82, 126, 220, 0.18);
+        }
+        .field-frame .field-input { border: 0; border-radius: 0; box-shadow: none; }
+
+        /* Native color swatch */
+        input[type="color"] {
+            -webkit-appearance: none;
+            appearance: none;
+            border: 0;
+            padding: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            background: none;
+            flex-shrink: 0;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: 1px solid rgba(15, 23, 42, 0.12); border-radius: 0.75rem; }
+        input[type="color"]::-moz-color-swatch { border: 1px solid rgba(15, 23, 42, 0.12); border-radius: 0.75rem; }
+
+        /* Drop zones */
+        .dropzone.is-dragover {
+            border-color: #315399;
+            background: #f0f4fd;
+        }
+        .checker {
+            background-color: #fff;
+            background-image:
+                linear-gradient(45deg, #eef2f7 25%, transparent 25%),
+                linear-gradient(-45deg, #eef2f7 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #eef2f7 75%),
+                linear-gradient(-45deg, transparent 75%, #eef2f7 75%);
+            background-size: 14px 14px;
+            background-position: 0 0, 0 7px, 7px -7px, -7px 0;
+        }
+
+        /* Phone mockup */
+        .phone {
+            width: 252px;
+            height: 520px;
+            border-radius: 2.4rem;
+            border: 10px solid #0f172a;
+            background: #0f172a;
+            box-shadow: 0 24px 48px -16px rgba(15, 23, 42, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .phone-screen {
+            position: absolute;
+            inset: 0;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: opacity .25s;
+        }
+        .phone-screen[hidden] { display: none; }
+        .status-bar {
+            height: 26px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .app-tile {
+            width: 44px;
+            height: 44px;
+            border-radius: 28%;
+            background: rgba(255, 255, 255, 0.28);
+        }
+        .app-label {
+            font-size: 9.5px;
+            line-height: 1.2;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+            max-width: 56px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: center;
+        }
+        /* Login screen replica of lib/app/modules/login/views/login_view.dart,
+           laid out at real device size (390dp wide) and scaled down to the mockup. */
+        .flutter-screen {
+            width: 390px;
+            height: 841px;
+            flex-shrink: 0;
+            transform: scale(0.5949);
+            transform-origin: 0 0;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            font-family: Roboto, sans-serif;
+        }
+        .flutter-appbar { color: #fff; flex-shrink: 0; transition: background-color .2s; }
+        .flutter-status {
+            height: 32px;
+            padding: 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .flutter-toolbar {
+            height: 64px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flutter-title {
+            font-size: 18px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .flutter-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+        }
+        .flutter-logo {
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flutter-logo img { width: 100%; height: 100%; object-fit: contain; }
+        /* SignInButton(Buttons.google) from the sign_in_button package */
+        .flutter-google-btn {
+            margin-top: 48px;
+            width: 220px;
+            height: 36px;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #1F1F1F;
+        }
+        .flutter-google-btn img { width: 36px; height: 36px; border-radius: 8px; margin-right: 10px; }
+        .flutter-navbar { height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .flutter-navbar span { width: 108px; height: 4px; border-radius: 2px; background: rgba(31, 31, 31, .4); }
+
+        .preview-tab[aria-selected="true"] {
+            background: #fff;
+            color: #315399;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+        }
+
+        @media print {
+            header, .no-print { display: none !important; }
+            body { background: #fff; }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-700 selection:text-white relative overflow-x-hidden bg-grid-pattern">
+
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-300/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-30 glass-card !border-x-0 !border-t-0">
+        <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <img src="/assets/logo-mark.svg" alt="" class="w-8 h-8 transition-transform group-hover:scale-105">
+                <span class="font-bold text-brand-700 text-lg tracking-tight">MonAmie</span>
+            </a>
+            <a href="mailto:contact@monamienet.org?subject=Onboarding%20de%20parceiro" class="text-sm font-medium text-slate-600 hover:text-brand-700 transition-colors flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100">
+                <i data-lucide="life-buoy" class="w-4 h-4"></i>
+                <span>Precisa de ajuda?</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-8">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200/60 shadow-sm mb-5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Parceiros · criação do aplicativo
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">Onboarding de parceiro</h1>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+            Preencha os dados abaixo para criarmos o aplicativo da sua marca. Os campos marcados com <span class="text-rose-500 font-semibold">*</span> são obrigatórios.
+        </p>
+    </div>
+
+    <main class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-6 lg:gap-8 items-start">
+
+            <!-- Form -->
+            <form id="onboardingForm" novalidate class="space-y-6 min-w-0">
+
+                <!-- 1. Contact -->
+                <section class="form-card bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+                    <h2><span class="num">1</span>Contato</h2>
+                    <p class="text-sm text-slate-500 mb-5">Usaremos este e-mail para falar com você sobre a criação do aplicativo.</p>
+
+                    <div class="field" data-field="email">
+                        <label for="email" class="block text-sm font-semibold text-slate-800 mb-1.5">E-mail <span class="text-rose-500">*</span></label>
+                        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@suaempresa.com.br" class="field-input">
+                        <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                    </div>
+                </section>
+
+                <!-- 2. App name -->
+                <section class="form-card bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+                    <h2><span class="num">2</span>Nome do aplicativo</h2>
+                    <p class="text-sm text-slate-500 mb-5">
+                        Todo aplicativo da plataforma é publicado como <strong class="text-slate-700">MonAmie &lt;sua marca&gt;</strong>. Sugerimos usar o nome da empresa. As lojas aceitam até 30 caracteres no total, então sobram até 22 para o nome da marca.
+                    </p>
+
+                    <div class="space-y-5">
+                        <div class="field" data-field="appName">
+                            <div class="flex items-baseline justify-between gap-3 mb-1.5">
+                                <label for="appName" class="block text-sm font-semibold text-slate-800">Nome desejado <span class="text-rose-500">*</span></label>
+                                <span class="name-counter text-xs font-medium text-slate-400 tabular-nums" data-counter-for="appName">8/30</span>
+                            </div>
+                            <div class="field-frame">
+                                <span class="flex items-center pl-3.5 pr-1 text-[0.95rem] font-semibold text-brand-700 bg-brand-50/60 border-r border-slate-200 select-none whitespace-nowrap" aria-hidden="true">MonAmie&nbsp;</span>
+                                <input id="appName" name="appName" type="text" maxlength="22" autocomplete="organization" placeholder="Sua Marca" class="field-input" aria-describedby="appNameHint">
+                            </div>
+                            <p id="appNameHint" class="mt-1.5 text-xs text-slate-500">Escreva só o nome da marca. O prefixo “MonAmie” é adicionado automaticamente.</p>
+                            <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                        </div>
+
+                        <div class="field" data-field="altName">
+                            <div class="flex items-baseline justify-between gap-3 mb-1.5">
+                                <label for="altName" class="block text-sm font-semibold text-slate-800">Nome alternativo <span class="text-rose-500">*</span></label>
+                                <span class="name-counter text-xs font-medium text-slate-400 tabular-nums" data-counter-for="altName">8/30</span>
+                            </div>
+                            <div class="field-frame">
+                                <span class="flex items-center pl-3.5 pr-1 text-[0.95rem] font-semibold text-brand-700 bg-brand-50/60 border-r border-slate-200 select-none whitespace-nowrap" aria-hidden="true">MonAmie&nbsp;</span>
+                                <input id="altName" name="altName" type="text" maxlength="22" placeholder="Outra opção" class="field-input" aria-describedby="altNameHint">
+                            </div>
+                            <p id="altNameHint" class="mt-1.5 text-xs text-slate-500">Usado se o nome desejado já estiver em uso ou for recusado pelas lojas.</p>
+                            <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. Colors -->
+                <section data-preview-for="login" class="form-card bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+                    <h2><span class="num">3</span>Cores da marca</h2>
+                    <p class="text-sm text-slate-500 mb-5">Clique no quadrado para escolher a cor ou cole o código hexadecimal (ex.: <code class="text-slate-700">#315399</code>). A prévia ao lado mostra o resultado.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="field" data-field="primary">
+                            <label for="primaryHex" class="block text-sm font-semibold text-slate-800 mb-1.5">Cor primária <span class="text-rose-500">*</span></label>
+                            <div class="flex items-center gap-3">
+                                <input type="color" id="primaryPicker" value="#94a3b8" aria-label="Escolher cor primária">
+                                <input id="primaryHex" name="primary" type="text" maxlength="7" spellcheck="false" autocomplete="off" placeholder="#RRGGBB" class="field-input font-mono uppercase">
+                            </div>
+                            <p class="mt-1.5 text-xs text-slate-500">Cor principal: barras, cabeçalhos e destaques.</p>
+                            <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                        </div>
+
+                        <div class="field" data-field="secondary">
+                            <label for="secondaryHex" class="block text-sm font-semibold text-slate-800 mb-1.5">Cor secundária <span class="text-rose-500">*</span></label>
+                            <div class="flex items-center gap-3">
+                                <input type="color" id="secondaryPicker" value="#64748b" aria-label="Escolher cor secundária">
+                                <input id="secondaryHex" name="secondary" type="text" maxlength="7" spellcheck="false" autocomplete="off" placeholder="#RRGGBB" class="field-input font-mono uppercase">
+                            </div>
+                            <p class="mt-1.5 text-xs text-slate-500">Cor de apoio: botões e elementos de ação.</p>
+                            <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                        </div>
+                    </div>
+
+                    <p id="colorWarning" class="hidden mt-4 text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200/70 rounded-xl px-3 py-2 flex items-start gap-2">
+                        <i data-lucide="triangle-alert" class="w-4 h-4 shrink-0"></i>
+                        <span>As duas cores estão muito parecidas. Uma secundária mais contrastante ajuda a destacar botões e ações.</span>
+                    </p>
+                </section>
+
+                <!-- 4. Logos -->
+                <section class="form-card bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+                    <h2><span class="num">4</span>Logo em SVG</h2>
+                    <p class="text-sm text-slate-500 mb-4">Arraste os arquivos para as áreas abaixo ou clique para escolher. Use SVG, de preferência com fundo transparente. Tamanho máximo: 5 MB por arquivo.</p>
+
+                    <div class="mb-5 rounded-2xl bg-brand-50/60 border border-brand-200/60 p-4 text-sm text-slate-600 leading-relaxed flex gap-3">
+                        <i data-lucide="info" class="w-4 h-4 text-brand-700 shrink-0 mt-0.5"></i>
+                        <p>Envie <strong class="text-slate-800">ao menos um</strong> dos dois arquivos <span class="text-rose-500">*</span>. Se enviar só um, ele será usado no ícone e na tela de login. Se enviar os dois, o logo <strong class="text-slate-800">sem texto</strong> vira o ícone do aplicativo e o logo <strong class="text-slate-800">com texto</strong> aparece na tela de login.</p>
+                    </div>
+
+                    <div class="field" data-field="logos">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div class="field" data-field="symbol" data-preview-for="home">
+                                <span class="block text-sm font-semibold text-slate-800 mb-1.5">Logo sem texto <span class="font-normal text-slate-500">(ícone)</span></span>
+                                <label for="symbolInput" class="dropzone field-frame !flex-col items-center justify-center text-center gap-2 p-5 min-h-[190px] cursor-pointer border-dashed !border-2 hover:border-brand-300 hover:bg-brand-50/40" data-drop="symbol">
+                                    <div class="drop-empty flex flex-col items-center gap-2">
+                                        <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center"><i data-lucide="app-window" class="w-5 h-5"></i></div>
+                                        <span class="text-sm font-semibold text-slate-700">Escolher SVG</span>
+                                        <span class="text-xs text-slate-500 leading-relaxed">Só o símbolo da marca, sem o nome escrito</span>
+                                    </div>
+                                    <div class="drop-filled hidden flex-col items-center gap-2 w-full">
+                                        <img class="drop-thumb max-w-full h-24 object-contain rounded-xl checker p-2" alt="Logo sem texto enviado">
+                                        <span class="drop-name text-xs font-medium text-slate-700 max-w-full truncate"></span>
+                                        <span class="text-[11px] font-semibold text-brand-700">Trocar arquivo</span>
+                                    </div>
+                                </label>
+                                <input id="symbolInput" type="file" accept=".svg,image/svg+xml" class="sr-only">
+                                <p class="field-warning hidden mt-1.5 text-xs font-medium text-amber-700"></p>
+                                <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                            </div>
+
+                            <div class="field" data-field="full" data-preview-for="login">
+                                <span class="block text-sm font-semibold text-slate-800 mb-1.5">Logo com texto <span class="font-normal text-slate-500">(tela de login)</span></span>
+                                <label for="fullInput" class="dropzone field-frame !flex-col items-center justify-center text-center gap-2 p-5 min-h-[190px] cursor-pointer border-dashed !border-2 hover:border-brand-300 hover:bg-brand-50/40" data-drop="full">
+                                    <div class="drop-empty flex flex-col items-center gap-2">
+                                        <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center"><i data-lucide="pen-tool" class="w-5 h-5"></i></div>
+                                        <span class="text-sm font-semibold text-slate-700">Escolher SVG</span>
+                                        <span class="text-xs text-slate-500 leading-relaxed">Símbolo acompanhado do nome da marca</span>
+                                    </div>
+                                    <div class="drop-filled hidden flex-col items-center gap-2 w-full">
+                                        <img class="drop-thumb max-w-full h-24 object-contain rounded-xl checker p-2" alt="Logo com texto enviado">
+                                        <span class="drop-name text-xs font-medium text-slate-700 max-w-full truncate"></span>
+                                        <span class="text-[11px] font-semibold text-brand-700">Trocar arquivo</span>
+                                    </div>
+                                </label>
+                                <input id="fullInput" type="file" accept=".svg,image/svg+xml" class="sr-only">
+                                <p class="field-warning hidden mt-1.5 text-xs font-medium text-amber-700"></p>
+                                <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                            </div>
+                        </div>
+                        <p class="field-error hidden mt-3 text-xs font-medium text-rose-600"></p>
+                    </div>
+                </section>
+
+                <!-- 5. Confirmation -->
+                <section class="form-card bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+                    <h2><span class="num">5</span>Confirmação</h2>
+                    <p class="text-sm text-slate-500 mb-5">Declaração de direitos sobre a marca.</p>
+
+                    <div class="field" data-field="rights">
+                        <label for="rights" class="flex items-start gap-3 p-4 rounded-2xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/40 transition-colors cursor-pointer field-frame !flex-row !overflow-visible">
+                            <input id="rights" name="rights" type="checkbox" class="mt-0.5 w-5 h-5 rounded border-slate-300 accent-brand-700 shrink-0">
+                            <span class="text-sm text-slate-700 leading-relaxed">Declaro que possuo os direitos de uso sobre o nome, a marca e os logos enviados. <span class="text-rose-500">*</span></span>
+                        </label>
+                        <p class="field-error hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                    </div>
+
+                    <!-- Honeypot: humans never see or fill this -->
+                    <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                        <label for="website">Não preencha este campo</label>
+                        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="mt-6 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <button type="button" id="btnReset" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors">
+                            Limpar formulário
+                        </button>
+                        <button type="submit" id="btnSubmit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-700 hover:bg-brand-800 active:scale-[0.98] text-white font-semibold text-sm transition-all shadow-md shadow-brand-700/20 flex items-center justify-center gap-2 disabled:opacity-80 disabled:cursor-wait">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Enviar</span>
+                        </button>
+                    </div>
+                </section>
+            </form>
+
+            <!-- Success card (replaces the form after sending) -->
+            <section id="successCard" class="hidden min-w-0 bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-10 text-center">
+                <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                    <i data-lucide="circle-check" class="w-7 h-7"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Recebemos seus dados!</h2>
+                <p class="text-slate-600 leading-relaxed max-w-md mx-auto">
+                    Obrigado. Vamos começar a criar o <strong id="successAppName" class="text-slate-800"></strong> e entraremos em contato pelo e-mail <strong id="successEmail" class="text-slate-800"></strong>.
+                </p>
+                <p class="text-sm text-slate-500 mt-4">Dúvidas? Escreva para <a href="mailto:contact@monamienet.org" class="text-brand-700 font-medium underline underline-offset-2">contact@monamienet.org</a>.</p>
+                <button type="button" id="btnAnother" class="mt-6 px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-slate-50 transition-colors">
+                    Enviar outra resposta
+                </button>
+            </section>
+
+            <!-- Live preview -->
+            <aside class="lg:sticky lg:top-24 no-print">
+                <div class="glass-card rounded-3xl shadow-sm p-5">
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="text-sm font-semibold text-slate-800 flex items-center gap-1.5">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-brand-700"></i>
+                            Prévia
+                        </span>
+                        <div class="inline-flex p-0.5 rounded-lg bg-slate-100 border border-slate-200/70 text-xs font-semibold" role="tablist" aria-label="Tela da prévia">
+                            <button type="button" role="tab" aria-selected="true" data-preview-tab="home" class="preview-tab px-2.5 py-1 rounded-md text-slate-500 transition-colors">Início</button>
+                            <button type="button" role="tab" aria-selected="false" data-preview-tab="login" class="preview-tab px-2.5 py-1 rounded-md text-slate-500 transition-colors">Login</button>
+                        </div>
+                    </div>
+
+                    <div class="phone mx-auto">
+                        <!-- Home screen -->
+                        <div class="phone-screen" data-preview-screen="home" style="background: linear-gradient(165deg, #94a3b8 0%, #334155 100%);">
+                            <div class="status-bar text-white/90"><span>9:41</span><span class="flex items-center gap-1"><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery-full" class="w-3.5 h-3.5"></i></span></div>
+                            <div class="px-4 pt-6 text-white/90">
+                                <div class="text-3xl font-light tracking-tight">9:41</div>
+                                <div class="text-[11px] font-medium opacity-80">sexta-feira, 16 de outubro</div>
+                            </div>
+                            <div class="mt-auto px-3 pb-6">
+                                <div class="grid grid-cols-4 gap-y-4 justify-items-center">
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Agenda</span></div>
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Fotos</span></div>
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Mapas</span></div>
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Relógio</span></div>
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Notas</span></div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div id="pvIconWrap" class="app-tile overflow-hidden ring-2 ring-white/70 flex items-center justify-center">
+                                            <img id="pvIcon" class="hidden w-full h-full object-contain p-1.5 bg-white" alt="">
+                                            <i id="pvIconPlaceholder" data-lucide="image" class="w-5 h-5 text-white/80"></i>
+                                        </div>
+                                        <span class="app-label font-semibold"><span class="block">MonAmie</span><span id="pvIconLabel" class="block truncate">Sua Marca</span></span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Música</span></div>
+                                    <div class="flex flex-col items-center gap-1"><div class="app-tile"></div><span class="app-label">Ajustes</span></div>
+                                </div>
+                                <div class="mt-5 mx-2 h-12 rounded-2xl bg-white/20 grid grid-cols-4 items-center justify-items-center">
+                                    <div class="w-8 h-8 rounded-[28%] bg-white/30"></div>
+                                    <div class="w-8 h-8 rounded-[28%] bg-white/30"></div>
+                                    <div class="w-8 h-8 rounded-[28%] bg-white/30"></div>
+                                    <div class="w-8 h-8 rounded-[28%] bg-white/30"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Login screen -->
+                        <div class="phone-screen bg-white" data-preview-screen="login" hidden>
+                            <div class="flutter-screen">
+                                <div id="pvAppBar" class="flutter-appbar">
+                                    <div class="flutter-status"><span>9:41</span><span class="flex items-center gap-1.5"><i data-lucide="wifi" class="w-5 h-5"></i><i data-lucide="battery-full" class="w-6 h-6"></i></span></div>
+                                    <div class="flutter-toolbar"><span id="pvLoginTitle" class="flutter-title">MonAmie</span></div>
+                                </div>
+                                <div class="flutter-body">
+                                    <div class="flutter-logo">
+                                        <img id="pvLogo" class="hidden" alt="">
+                                        <span id="pvLogoPlaceholder" class="w-full h-full rounded-3xl border-2 border-dashed border-slate-200 text-slate-400 text-lg font-medium flex flex-col items-center justify-center gap-2">
+                                            <i data-lucide="image" class="w-10 h-10"></i> Seu logo
+                                        </span>
+                                    </div>
+                                    <div class="flutter-google-btn">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADAFBMVEX////84+H4ubTzkYnwc2juZVntV0vrSj3rRznsUEPtWk3wcGbyi4L2rqj95eP72NXzkonsUkXqQzXuYFT0lo76zcr//f3//fz3tK7uYVX4v7r5wr35xcD96+nwcmfwdmz+8fD5xcHsUUTtWUz0nJXrSDr3s63zkorzkIjzjIP1oZr5x8PrRDbrTD7tXVDvbWLvbGHtXFDrSz395uTsT0Hva2D2q6X83Nn84d7wc2nweG7xenD71dLsVEf4wLv/+/jtWUvuZFj83931oJn+5Zv1kRfqSDPvbmP+9PT8yDD7vAX4pg7tVS7+7r/6tQfvaCbrSTv84N392GvzhRvqRTX8xCD3nRHrTjH/+vn/88/5rwruXir2qKH7ugbyfSz92W79zkdUkfWryfv8zUL+34ZChfSKtPn8xir+7r1xpPf8whv/9NVjm/b8vgz/+upblfb/9NRZlPb8xitimvZroPeCr/j4vAeZuEHw+fKbvvqdwPrnug1irEI0qFOh169ypPe50vvKtxhFqkxMsmf5/fr1+f9Fh/Xl7v6fsyk2qVOY06iqyPpVkfbwuwlyrjo6q1jd8eJRj/WIsvn3xizYuBNRq0dPtGqMtfnJ3fzv346ztSE7qVBjvHv0+vWvzPtSkPX9/v/6/flOs2lYuHHp9u2vy/upyPrA5MpGsGK74sX2+/eKuehYk/b6/P9twYNvwoXS7Nmu3btIsWQ3pmA/j8i40fvk9OhArl5fu3im2bPZ79/s9+/B5cuGzJlBrl40qFQ7lqb+///C5cw1qVQ9rFtQtGphvHlVtm9FsGI4noJBiOlEhvXM3v2a1Kk2o2g/jNWsyvuDypY1p1g8kreTuvmKzZw6mpNChvB9q/iU0aRrt6D4+//B5cpDr2A2qVWb1av+//5nvn5HsGPL6dO948dTtW08rFqLzp3t+PD8/v2u3LpUtm4+rVyS0KLV7duJzZtEr2F2xIut3Lnw+fPg8uW037+IzJpnvn9YuHJKsmZfu3dwwoaCypWe1q3U7dr9/v0xgKvpAAAAAWJLR0Rltd2InwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+UFBQoDLo8PhAkAAALiSURBVHja7dhlcBNBHIfhIMWhcEFLC8G1QJECxWmxw92lQHGnQJFFi7tbsVLc3QvF3d01uLuTJm3uLs3lMszc7n34Pd8yuzN5J7nc/Tc6HQAAAAAAAAAAAAAAAGhIrNhx4rrEi58gYaLESZImY13jmjwFJ6FPmSo1s5o0adNxdujdGPWk13MyXNwZ5Hhk4BzIaKDdkykz51AWV7o9WTkl2bLT7MnBKctJsSeXxnpya6wnT94Yb++ZL38Br4KMegoVtqkp4l3UslLMuziDHp2PNKdEScmjxId6j7skp1Rp23U3T7o9ZcqKe8p5xNxR3pfqHdGvQkWhp1Jl9tNPFb5qtegeLwP7nuo8z9eoaempVVsD42EdPlLdepFBvhro0dU3B/ENGpqe54000NOYj9KkKddMCx+QX3QQ37yFQQtBLa1BfCubJX85rdUMaiMEtbVZCpDTTs2g9kJQB2eDOqoZ1EkI6uxsUBc1g7oKQd2cDequtSB/Sl9ZD2eDeqoZ1Os/LureWvvZBzK6McoG9aHz6OjbL0i61F8iUAgaQOXhOnAQGexo4xAhaCiN8WPYcEJGBMtvGzlKCBpNYUAbM5aYjJPfNl7omaD+CDtxEjGbPEX2A5oqBE1TeQCZzs+YSaLMCpLZNFv0I5ujctDcefOJVcgCu3sWinoWLVY5aEkoEVkaZmfLMtEVHbBc9aFxhTiIrFxlu756jfiuuHad+mPsekkR2bBRvBi8afOWraKgbRTm6u07pEVk567dlpU9e/eFm17vPyAMZxE0Jv2Dh4itw0eOhhw7bn154qSl59RpOmePM0TJ2XPmoPO0TkMXFIsuXjL1XKZ3PruiWESuXrseQS9Id0O56OYtqmfY23cc59y9d5/yqTrsgaOeh48YHPQfP5HLMT59xuSvh+cvXtrLefWaTY7Zm7fvpDXh7z98ZPwXzafPX75++240hv74+ev3n786AAAAAAAAAAAAAAAA0I5/l/Amd1cDL18AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDUtMDVUMTA6MDM6MTYrMDA6MDCGJT1PAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA1LTA1VDEwOjAzOjE2KzAwOjAw93iF8wAAAABJRU5ErkJggg==" alt="">
+                                        <span>Entrar com o Google</span>
+                                    </div>
+                                </div>
+                                <div class="flutter-navbar"><span></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-4 text-[11px] text-slate-400 text-center leading-relaxed">Ilustração aproximada. O visual final do aplicativo pode variar.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 left-6 sm:left-auto max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs font-medium translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <span id="toastIcon" class="shrink-0"></span>
+        <span id="toastMsg"></span>
+    </div>
+
+    <footer class="relative z-10 w-full max-w-5xl mx-auto px-6 py-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+        <span>&copy; <span id="year"></span> MonAmieNet. Todos os direitos reservados.</span>
+        <a href="/privacy/" class="hover:text-brand-700 transition-colors">Política de Privacidade</a>
+    </footer>
+
+    <script>
+        // Web app URL of the Apps Script deployment (see apps-script/LEIAME.md).
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyds8_NLoQqEKWs9oN_xSaSdv4aMj67tUHk7_j8BuMXXITfrBw4biR-HL6pujLtzVFHjA/exec';
+
+        const MAX_FILE_BYTES = 5 * 1024 * 1024;
+        const NAME_PREFIX = 'MonAmie ';
+        const NAME_MAX = 22; // 30 (store title limit) minus the prefix
+        const HEX_RE = /^#[0-9A-Fa-f]{6}$/;
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const FALLBACK_PRIMARY = '#94A3B8';
+        const FALLBACK_SECONDARY = '#64748B';
+
+        const form = document.getElementById('onboardingForm');
+        const $ = (id) => document.getElementById(id);
+
+        // Validated files: { file, url, error, warning }
+        const files = { symbol: null, full: null };
+        let sending = false;
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+        lucide.createIcons();
+
+        /* ---------- Field messages ---------- */
+
+        function fieldEl(name) {
+            return form.querySelector(`.field[data-field="${name}"]`);
+        }
+
+        function setError(name, message) {
+            const field = fieldEl(name);
+            const el = field.querySelector(':scope > .field-error');
+            field.classList.toggle('has-error', !!message);
+            el.textContent = message || '';
+            el.classList.toggle('hidden', !message);
+            return !message;
+        }
+
+        function setWarning(name, message) {
+            const el = fieldEl(name).querySelector(':scope > .field-warning');
+            if (!el) return;
+            el.textContent = message || '';
+            el.classList.toggle('hidden', !message);
+        }
+
+        /* ---------- Text field validators ---------- */
+
+        function normalizeName(value) {
+            return value.replace(/\s+/g, ' ').trim();
+        }
+
+        function nameError(value) {
+            const name = normalizeName(value);
+            if (!name) return 'Informe o nome.';
+            if (name.length > NAME_MAX) return `Use no máximo ${NAME_MAX} caracteres.`;
+            if (/^mon\s*amie\b/i.test(name)) return 'Não inclua “MonAmie”: ele já é adicionado automaticamente.';
+            if (!/[\p{L}\p{N}]/u.test(name)) return 'O nome precisa ter ao menos uma letra ou número.';
+            return '';
+        }
+
+        const validators = {
+            email: () => {
+                const v = $('email').value.trim();
+                if (!v) return 'Informe o seu e-mail.';
+                if (!EMAIL_RE.test(v)) return 'Este e-mail não parece válido.';
+                return '';
+            },
+            appName: () => nameError($('appName').value),
+            altName: () => {
+                const err = nameError($('altName').value);
+                if (err) return err;
+                const a = normalizeName($('appName').value).toLowerCase();
+                const b = normalizeName($('altName').value).toLowerCase();
+                if (a && a === b) return 'O nome alternativo precisa ser diferente do nome desejado.';
+                return '';
+            },
+            primary: () => hexError($('primaryHex').value),
+            secondary: () => hexError($('secondaryHex').value),
+            symbol: () => files.symbol ? files.symbol.error : '',
+            full: () => files.full ? files.full.error : '',
+            logos: () => files.symbol || files.full ? '' : 'Envie ao menos um dos dois logos em SVG.',
+            rights: () => $('rights').checked ? '' : 'É preciso confirmar a declaração de direitos.',
+        };
+
+        function hexError(value) {
+            const v = value.trim();
+            if (!v) return 'Escolha uma cor.';
+            if (!HEX_RE.test(v)) return 'Use o formato #RRGGBB (ex.: #315399).';
+            return '';
+        }
+
+        function validate(name) {
+            return setError(name, validators[name]());
+        }
+
+        // Validate on blur; once a field shows an error, re-check it while typing.
+        ['email', 'appName', 'altName'].forEach((id) => {
+            $(id).addEventListener('blur', () => { if ($(id).value) validate(id); });
+            $(id).addEventListener('input', () => {
+                if (fieldEl(id).classList.contains('has-error')) validate(id);
+            });
+        });
+
+        /* ---------- Name counters ---------- */
+
+        function updateCounter(id) {
+            const len = NAME_PREFIX.length + normalizeName($(id).value).length;
+            const el = form.querySelector(`[data-counter-for="${id}"]`);
+            el.textContent = `${len}/30`;
+            el.classList.toggle('text-rose-500', len > 30);
+        }
+
+        ['appName', 'altName'].forEach((id) => {
+            $(id).addEventListener('input', () => {
+                updateCounter(id);
+                if (id === 'appName' && $('altName').value && fieldEl('altName').classList.contains('has-error')) validate('altName');
+                updatePreview();
+            });
+        });
+
+        /* ---------- Colors ---------- */
+
+        function bindColor(key) {
+            const picker = $(key + 'Picker');
+            const hex = $(key + 'Hex');
+
+            picker.addEventListener('input', () => {
+                hex.value = picker.value.toUpperCase();
+                validate(key);
+                onColorsChanged();
+            });
+
+            hex.addEventListener('input', () => {
+                let v = hex.value.trim();
+                if (v && v[0] !== '#') v = '#' + v;
+                if (HEX_RE.test(v)) {
+                    picker.value = v.toLowerCase();
+                    if (hex.value !== v.toUpperCase()) hex.value = v.toUpperCase();
+                }
+                if (fieldEl(key).classList.contains('has-error') || HEX_RE.test(v)) validate(key);
+                onColorsChanged();
+            });
+
+            hex.addEventListener('blur', () => { if (hex.value) validate(key); });
+        }
+
+        bindColor('primary');
+        bindColor('secondary');
+
+        function hexToRgb(hex) {
+            const n = parseInt(hex.slice(1), 16);
+            return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+        }
+
+        function rgbToHex(rgb) {
+            return '#' + rgb.map((c) => Math.round(Math.max(0, Math.min(255, c))).toString(16).padStart(2, '0')).join('').toUpperCase();
+        }
+
+        // Dark companion of a brand color, like AppColors.brandDark in the app.
+        function darken(hex, factor = 0.33) {
+            return rgbToHex(hexToRgb(hex).map((c) => c * factor));
+        }
+
+        function currentColor(key, fallback) {
+            const v = $(key + 'Hex').value.trim();
+            return HEX_RE.test(v) ? v.toUpperCase() : fallback;
+        }
+
+        function onColorsChanged() {
+            const p = $('primaryHex').value.trim();
+            const s = $('secondaryHex').value.trim();
+            let tooClose = false;
+            if (HEX_RE.test(p) && HEX_RE.test(s)) {
+                const a = hexToRgb(p), b = hexToRgb(s);
+                tooClose = Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]) < 48;
+            }
+            $('colorWarning').classList.toggle('hidden', !tooClose);
+            $('colorWarning').classList.toggle('flex', tooClose);
+            updatePreview();
+        }
+
+        /* ---------- Files ---------- */
+
+        function isSvgFile(file) {
+            return file.type === 'image/svg+xml' || /\.svg$/i.test(file.name);
+        }
+
+        async function checkSvg(file) {
+            if (!isSvgFile(file)) return { error: 'Envie um arquivo SVG.' };
+            if (file.size > MAX_FILE_BYTES) return { error: 'O arquivo passa de 5 MB.' };
+            const doc = new DOMParser().parseFromString(await file.text(), 'image/svg+xml');
+            const root = doc.documentElement;
+            if (doc.querySelector('parsererror') || !root || root.localName !== 'svg') {
+                return { error: 'Este SVG não é válido. Exporte o arquivo novamente a partir do seu editor.' };
+            }
+            const warnings = [];
+            if (!root.hasAttribute('viewBox')) warnings.push('o SVG não tem viewBox e pode não redimensionar bem');
+            if (root.querySelector('image')) warnings.push('o SVG contém uma imagem rasterizada embutida, então prefira um logo 100% vetorial');
+            return { error: '', warning: warnings.length ? 'Atenção: ' + warnings.join('; ') + '.' : '' };
+        }
+
+        async function handleFile(key, file) {
+            if (!file) return;
+            if (files[key] && files[key].url) URL.revokeObjectURL(files[key].url);
+
+            const url = URL.createObjectURL(file);
+            files[key] = { file, url, error: '', warning: '', pending: true };
+            showDropFilled(key, file, url);
+            setError(key, '');
+            setWarning(key, '');
+            setError('logos', '');
+
+            let result;
+            try {
+                result = await checkSvg(file);
+            } catch (e) {
+                result = { error: 'Não foi possível ler este arquivo. Tente outro.' };
+            }
+            // Ignore stale results if another file was chosen meanwhile.
+            if (!files[key] || files[key].file !== file) return;
+            Object.assign(files[key], { error: result.error, warning: result.warning || '', pending: false });
+            setError(key, result.error);
+            setWarning(key, result.warning);
+            updatePreview();
+        }
+
+        function showDropFilled(key, file, url) {
+            const zone = form.querySelector(`[data-drop="${key}"]`);
+            zone.querySelector('.drop-empty').classList.add('hidden');
+            const filled = zone.querySelector('.drop-filled');
+            filled.classList.remove('hidden');
+            filled.classList.add('flex');
+            zone.querySelector('.drop-thumb').src = url;
+            zone.querySelector('.drop-name').textContent = file.name;
+        }
+
+        function clearDrop(key) {
+            const zone = form.querySelector(`[data-drop="${key}"]`);
+            zone.querySelector('.drop-empty').classList.remove('hidden');
+            const filled = zone.querySelector('.drop-filled');
+            filled.classList.add('hidden');
+            filled.classList.remove('flex');
+            zone.querySelector('.drop-thumb').removeAttribute('src');
+            if (files[key] && files[key].url) URL.revokeObjectURL(files[key].url);
+            files[key] = null;
+        }
+
+        ['symbol', 'full'].forEach((key) => {
+            const input = $(key + 'Input');
+            const zone = form.querySelector(`[data-drop="${key}"]`);
+
+            input.addEventListener('change', () => {
+                handleFile(key, input.files[0]);
+                input.value = ''; // allow re-selecting the same file
+            });
+
+            ['dragenter', 'dragover'].forEach((ev) => zone.addEventListener(ev, (e) => {
+                e.preventDefault();
+                zone.classList.add('is-dragover');
+            }));
+            ['dragleave', 'dragend', 'drop'].forEach((ev) => zone.addEventListener(ev, () => zone.classList.remove('is-dragover')));
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                handleFile(key, e.dataTransfer.files[0]);
+            });
+        });
+
+        // Keep a file dropped outside a zone from replacing the page.
+        window.addEventListener('dragover', (e) => e.preventDefault());
+        window.addEventListener('drop', (e) => e.preventDefault());
+
+        $('rights').addEventListener('change', () => validate('rights'));
+
+        /* ---------- Live preview ---------- */
+
+        function showPreview(screen) {
+            document.querySelectorAll('[data-preview-tab]').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.previewTab === screen)));
+            document.querySelectorAll('[data-preview-screen]').forEach((s) => { s.hidden = s.dataset.previewScreen !== screen; });
+        }
+
+        document.querySelectorAll('[data-preview-tab]').forEach((tab) => {
+            tab.addEventListener('click', () => showPreview(tab.dataset.previewTab));
+        });
+
+        // Show the screen where the field being edited appears: colors and the
+        // full logo on the login screen, the symbol logo on the launcher.
+        // Other fields keep whatever screen is showing.
+        form.querySelectorAll('[data-preview-for]').forEach((el) => {
+            ['focusin', 'pointerdown', 'input', 'change', 'dragenter'].forEach((ev) => {
+                el.addEventListener(ev, () => showPreview(el.dataset.previewFor));
+            });
+        });
+
+        function updatePreview() {
+            const brand = normalizeName($('appName').value) || 'Sua Marca';
+            const fullName = NAME_PREFIX + brand;
+            $('pvIconLabel').textContent = brand;
+            $('pvLoginTitle').textContent = fullName;
+
+            // The login AppBar uses AppColors.darkBlue(), the dark shade of the primary color.
+            $('pvAppBar').style.backgroundColor = darken(currentColor('primary', FALLBACK_PRIMARY));
+
+            // With a single SVG it serves both places; with two, symbol → icon and full → login.
+            const usable = (key) => (files[key] && !files[key].error ? files[key].url : '');
+            const icon = usable('symbol') || usable('full');
+            $('pvIcon').classList.toggle('hidden', !icon);
+            $('pvIconPlaceholder').classList.toggle('hidden', !!icon);
+            if (icon) $('pvIcon').src = icon; else $('pvIcon').removeAttribute('src');
+
+            const logo = usable('full') || usable('symbol');
+            $('pvLogo').classList.toggle('hidden', !logo);
+            $('pvLogoPlaceholder').classList.toggle('hidden', !!logo);
+            if (logo) $('pvLogo').src = logo; else $('pvLogo').removeAttribute('src');
+        }
+
+        /* ---------- Submit ---------- */
+
+        function readAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result).split(',')[1]);
+                reader.onerror = () => reject(reader.error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function filePayload(key) {
+            if (!files[key]) return null;
+            const f = files[key].file;
+            return { name: f.name, type: 'image/svg+xml', data: await readAsBase64(f) };
+        }
+
+        function setSubmitting(on) {
+            const btn = $('btnSubmit');
+            btn.disabled = on;
+            btn.innerHTML = on
+                ? '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Enviando…</span>'
+                : '<i data-lucide="send" class="w-4 h-4"></i><span>Enviar</span>';
+            lucide.createIcons();
+        }
+
+        async function waitForPendingFiles() {
+            // A file may still be under validation if the user submits right after choosing it.
+            while (Object.values(files).some((f) => f && f.pending)) {
+                await new Promise((r) => setTimeout(r, 50));
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (sending) return;
+            sending = true;
+            setSubmitting(true);
+
+            try {
+                await waitForPendingFiles();
+
+                const order = ['email', 'appName', 'altName', 'primary', 'secondary', 'symbol', 'full', 'logos', 'rights'];
+                const invalid = order.filter((name) => !validate(name));
+                if (invalid.length) {
+                    fieldEl(invalid[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    showToast('Revise os campos destacados.', 'error');
+                    return;
+                }
+
+                // Bots fill the hidden field; pretend it worked and send nothing.
+                if ($('website').value) {
+                    showSuccess();
+                    return;
+                }
+
+                if (!/^https:\/\/script\.google\.com\//.test(APPS_SCRIPT_URL)) {
+                    showToast('O envio ainda não foi configurado. Escreva para contact@monamienet.org.', 'error');
+                    return;
+                }
+
+                const payload = {
+                    email: $('email').value.trim(),
+                    appName: normalizeName($('appName').value),
+                    altName: normalizeName($('altName').value),
+                    primary: $('primaryHex').value.trim().toUpperCase(),
+                    secondary: $('secondaryHex').value.trim().toUpperCase(),
+                    rights: $('rights').checked,
+                    website: $('website').value,
+                    symbol: await filePayload('symbol'),
+                    full: await filePayload('full'),
+                };
+
+                // No explicit Content-Type: the body goes as text/plain, which skips the CORS preflight Apps Script can't answer.
+                const res = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+                let json = null;
+                try { json = await res.json(); } catch (_) { /* handled below */ }
+                if (!res.ok || !json || !json.ok) {
+                    throw new Error((json && json.error) || `Resposta inesperada do servidor (${res.status}).`);
+                }
+                showSuccess();
+            } catch (err) {
+                showToast('Não foi possível enviar: ' + (err && err.message ? err.message : 'erro de conexão') + ' Tente novamente.', 'error', 6000);
+            } finally {
+                sending = false;
+                setSubmitting(false);
+            }
+        });
+
+        function showSuccess() {
+            $('successAppName').textContent = NAME_PREFIX + normalizeName($('appName').value);
+            $('successEmail').textContent = $('email').value.trim();
+            form.classList.add('hidden');
+            $('successCard').classList.remove('hidden');
+            $('successCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            showToast('Dados enviados com sucesso!');
+        }
+
+        function resetForm() {
+            form.reset();
+            clearDrop('symbol');
+            clearDrop('full');
+            $('primaryPicker').value = FALLBACK_PRIMARY.toLowerCase();
+            $('secondaryPicker').value = FALLBACK_SECONDARY.toLowerCase();
+            Object.keys(validators).forEach((name) => setError(name, ''));
+            setWarning('symbol', '');
+            setWarning('full', '');
+            updateCounter('appName');
+            updateCounter('altName');
+            onColorsChanged();
+        }
+
+        $('btnReset').addEventListener('click', () => {
+            if (confirm('Limpar todas as respostas do formulário?')) resetForm();
+        });
+
+        $('btnAnother').addEventListener('click', () => {
+            resetForm();
+            $('successCard').classList.add('hidden');
+            form.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ---------- Toast ---------- */
+
+        let toastTimer = null;
+        function showToast(message, kind = 'success', ms = 3500) {
+            const toast = $('toast');
+            $('toastMsg').textContent = message;
+            $('toastIcon').innerHTML = kind === 'error'
+                ? '<i data-lucide="circle-alert" class="w-4 h-4 text-rose-400"></i>'
+                : '<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>';
+            lucide.createIcons();
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, ms);
+        }
+
+        updatePreview();
+    </script>
+</body>
+</html>
