@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade — MonAmie</title>
+    <meta name="description" content="Política de Privacidade do aplicativo MonAmie: quais dados coletamos, por que, com quem compartilhamos e como exercer seus direitos (LGPD). / MonAmie app Privacy Policy.">
+    <link rel="canonical" href="https://monamienet.org/privacy/">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo-mark.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4fd',
+                            100: '#e1e9fa',
+                            200: '#c8d8f6',
+                            300: '#a2c0f0',
+                            400: '#75a0e6',
+                            500: '#527edc',
+                            600: '#385ea0',
+                            700: '#315399',
+                            800: '#28437d',
+                            900: '#233866',
+                            950: '#172342',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Pick the language before first paint to avoid a flash of both versions.
+        (function () {
+            var lang = null;
+            try { lang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+            if (lang !== 'pt' && lang !== 'en') {
+                try { lang = localStorage.getItem('monamie-privacy-lang'); } catch (e) {}
+            }
+            if (lang !== 'pt' && lang !== 'en') {
+                lang = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+            }
+            document.documentElement.classList.add('lang-' + lang);
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en-US';
+        })();
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafbfc;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(49, 83, 153, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Language switching */
+        html.lang-pt .only-en,
+        html.lang-en .only-pt { display: none !important; }
+
+        /* Long-form policy typography */
+        .policy section { scroll-margin-top: 6rem; }
+        .policy h2 {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+        .policy h2 .num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #315399;
+            background: #f0f4fd;
+            border: 1px solid #c8d8f6;
+            border-radius: 0.5rem;
+            padding: 0.1rem 0.5rem;
+            flex-shrink: 0;
+            position: relative;
+            top: -2px;
+        }
+        .policy h3 {
+            font-weight: 600;
+            color: #1e293b;
+            margin: 1.25rem 0 0.5rem;
+        }
+        .policy p,
+        .policy li {
+            color: #475569;
+            line-height: 1.75;
+            font-size: 0.95rem;
+        }
+        .policy p + p { margin-top: 0.75rem; }
+        .policy ul { list-style: none; padding: 0; margin: 0.75rem 0; }
+        .policy ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin: 0.4rem 0;
+        }
+        .policy ul li::before {
+            content: '';
+            position: absolute;
+            left: 0.2rem;
+            top: 0.7em;
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: #315399;
+        }
+        .policy strong { color: #1e293b; font-weight: 600; }
+        .policy a { color: #315399; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+        .policy a:hover { color: #28437d; }
+
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .data-table th {
+            text-align: left;
+            font-weight: 600;
+            color: #334155;
+            background: #f8fafc;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .data-table td {
+            vertical-align: top;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .data-table tr:last-child td { border-bottom: 0; }
+        .data-table td:first-child { font-weight: 600; color: #1e293b; }
+
+        /* Stack the table into cards on small screens */
+        @media (max-width: 640px) {
+            .data-table thead { display: none; }
+            .data-table tr { display: block; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; }
+            .data-table tr:last-child { border-bottom: 0; }
+            .data-table td { display: block; border: 0; padding: 0.2rem 1rem; }
+            .data-table td[data-label]::before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                color: #94a3b8;
+                margin-top: 0.35rem;
+            }
+        }
+
+        .toc a.active { color: #315399; background: #f0f4fd; font-weight: 600; }
+
+        @media print {
+            header, .toc, .no-print { display: none !important; }
+            body { background: #fff; }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-700 selection:text-white relative overflow-x-hidden bg-grid-pattern">
+
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-300/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-30 glass-card !border-x-0 !border-t-0">
+        <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <img src="/assets/logo-mark.svg" alt="" class="w-8 h-8 transition-transform group-hover:scale-105">
+                <span class="font-bold text-brand-700 text-lg tracking-tight">MonAmie</span>
+            </a>
+
+            <div class="flex items-center gap-1 sm:gap-2">
+                <div class="inline-flex p-0.5 rounded-lg bg-slate-100 border border-slate-200/70 text-xs font-semibold" role="group" aria-label="Language / Idioma">
+                    <button type="button" data-set-lang="pt" class="lang-btn px-2.5 py-1 rounded-md transition-colors">PT</button>
+                    <button type="button" data-set-lang="en" class="lang-btn px-2.5 py-1 rounded-md transition-colors">EN</button>
+                </div>
+                <a href="/" class="hidden sm:flex text-sm font-medium text-slate-600 hover:text-brand-700 transition-colors items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span class="only-pt">Início</span><span class="only-en">Home</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-8">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200/60 shadow-sm mb-5">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            <span class="only-pt">Conforme a LGPD (Lei nº 13.709/2018)</span>
+            <span class="only-en">Aligned with Brazil's LGPD (Law 13,709/2018)</span>
+        </span>
+
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+            <span class="only-pt">Política de Privacidade</span>
+            <span class="only-en">Privacy Policy</span>
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg max-w-2xl leading-relaxed">
+            <span class="only-pt">Como o aplicativo <strong class="text-slate-800">MonAmie</strong> coleta, usa, compartilha e protege os seus dados pessoais — e como você pode controlá-los.</span>
+            <span class="only-en">How the <strong class="text-slate-800">MonAmie</strong> app collects, uses, shares and protects your personal data — and how you can control it.</span>
+        </p>
+        <p class="mt-4 text-xs font-medium text-slate-400 flex items-center gap-1.5">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+            <span class="only-pt">Última atualização: 13 de outubro de 2026</span>
+            <span class="only-en">Last updated: October 13, 2026</span>
+        </p>
+
+        <!-- At a glance -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="glass-card rounded-2xl p-4 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center mb-3">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                </div>
+                <div class="text-sm font-semibold text-slate-800 mb-1">
+                    <span class="only-pt">Localização só com rastreamento ativo</span>
+                    <span class="only-en">Location only while tracking is on</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    <span class="only-pt">Você liga e desliga quando quiser. Uma notificação fica visível enquanto estiver ativo.</span>
+                    <span class="only-en">You switch it on and off at will. A notification stays visible while it runs.</span>
+                </p>
+            </div>
+            <div class="glass-card rounded-2xl p-4 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center mb-3">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                </div>
+                <div class="text-sm font-semibold text-slate-800 mb-1">
+                    <span class="only-pt">Visível apenas para sua equipe</span>
+                    <span class="only-en">Visible only to your team</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    <span class="only-pt">Sua posição é exibida aos membros do grupo que você selecionou na sua organização.</span>
+                    <span class="only-en">Your position is shown to members of the group you selected within your organization.</span>
+                </p>
+            </div>
+            <div class="glass-card rounded-2xl p-4 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center mb-3">
+                    <i data-lucide="ban" class="w-4 h-4"></i>
+                </div>
+                <div class="text-sm font-semibold text-slate-800 mb-1">
+                    <span class="only-pt">Sem anúncios, sem venda de dados</span>
+                    <span class="only-en">No ads, no data sales</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    <span class="only-pt">Não usamos seus dados para publicidade nem os vendemos a terceiros.</span>
+                    <span class="only-en">We never use your data for advertising or sell it to anyone.</span>
+                </p>
+            </div>
+            <div class="glass-card rounded-2xl p-4 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center mb-3">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </div>
+                <div class="text-sm font-semibold text-slate-800 mb-1">
+                    <span class="only-pt">Exclusão a qualquer momento</span>
+                    <span class="only-en">Delete at any time</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    <span class="only-pt">Você pode pedir a exclusão da sua conta e do seu histórico. <a href="#delete-account" class="text-brand-700 font-medium underline underline-offset-2">Veja como</a>.</span>
+                    <span class="only-en">You can request deletion of your account and history. <a href="#delete-account" class="text-brand-700 font-medium underline underline-offset-2">See how</a>.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-16 lg:grid lg:grid-cols-[230px_1fr] lg:gap-10">
+
+        <!-- Table of contents -->
+        <nav class="toc hidden lg:block" aria-label="Sumário / Contents">
+            <div class="sticky top-24">
+                <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-3 px-3">
+                    <span class="only-pt">Nesta página</span><span class="only-en">On this page</span>
+                </div>
+                <ul class="space-y-0.5 text-sm text-slate-500">
+                    <li><a href="#who-we-are" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Quem somos</span><span class="only-en">Who we are</span></a></li>
+                    <li><a href="#data-we-collect" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Dados coletados</span><span class="only-en">Data we collect</span></a></li>
+                    <li><a href="#background-location" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Localização em segundo plano</span><span class="only-en">Background location</span></a></li>
+                    <li><a href="#permissions" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Permissões do dispositivo</span><span class="only-en">Device permissions</span></a></li>
+                    <li><a href="#sharing" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Compartilhamento</span><span class="only-en">Sharing</span></a></li>
+                    <li><a href="#legal-basis" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Bases legais</span><span class="only-en">Legal bases</span></a></li>
+                    <li><a href="#international" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Transferência internacional</span><span class="only-en">International transfer</span></a></li>
+                    <li><a href="#retention" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Retenção</span><span class="only-en">Retention</span></a></li>
+                    <li><a href="#security" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Segurança</span><span class="only-en">Security</span></a></li>
+                    <li><a href="#rights" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Seus direitos</span><span class="only-en">Your rights</span></a></li>
+                    <li><a href="#delete-account" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Exclusão de conta</span><span class="only-en">Account deletion</span></a></li>
+                    <li><a href="#children" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Menores de idade</span><span class="only-en">Children</span></a></li>
+                    <li><a href="#changes" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Alterações</span><span class="only-en">Changes</span></a></li>
+                    <li><a href="#contact" class="block px-3 py-1.5 rounded-lg hover:text-brand-700 hover:bg-slate-100 transition-colors"><span class="only-pt">Contato</span><span class="only-en">Contact</span></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Policy content -->
+        <main class="policy bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-10 space-y-12 min-w-0">
+
+            <!-- 1 -->
+            <section id="who-we-are">
+                <h2><span class="num">1</span>
+                    <span class="only-pt">Quem somos e a quem esta política se aplica</span>
+                    <span class="only-en">Who we are and who this policy applies to</span>
+                </h2>
+                <div class="only-pt">
+                    <p>O <strong>MonAmie</strong> é um aplicativo de rastreamento, coordenação e comunicação de equipes desenvolvido e mantido pela <strong>MonAmieNet</strong> (“nós”). O aplicativo é oferecido a organizações clientes — empresas e entidades que o disponibilizam aos seus colaboradores, membros ou voluntários.</p>
+                    <p>Cada organização cliente recebe sua própria versão do aplicativo, publicada na Google Play com o nome <strong>“MonAmie &lt;nome da instância&gt;”</strong>. Cada versão opera em uma infraestrutura de dados <strong>própria e isolada</strong>: os dados de uma organização nunca são misturados com os de outra.</p>
+                    <p>Nos termos da LGPD:</p>
+                    <ul>
+                        <li>A <strong>organização cliente</strong> que lhe deu acesso ao aplicativo é, em regra, a <strong>controladora</strong> dos seus dados — é ela quem decide quem usa o aplicativo e com qual finalidade.</li>
+                        <li>A <strong>MonAmieNet</strong> atua como <strong>operadora</strong>, tratando os dados em nome da organização e de acordo com as instruções dela e com esta política.</li>
+                    </ul>
+                    <p>Esta política se aplica a todas as versões do aplicativo MonAmie publicadas pela MonAmieNet.</p>
+                </div>
+                <div class="only-en">
+                    <p><strong>MonAmie</strong> is a team tracking, coordination and communication app developed and maintained by <strong>MonAmieNet</strong> (“we”, “us”). The app is offered to client organizations — companies and other entities that make it available to their staff, members or volunteers.</p>
+                    <p>Each client organization gets its own version of the app, published on Google Play as <strong>“MonAmie &lt;instance name&gt;”</strong>. Each version runs on its <strong>own, isolated</strong> data infrastructure: one organization's data is never mixed with another's.</p>
+                    <p>Under Brazil's General Data Protection Law (LGPD):</p>
+                    <ul>
+                        <li>The <strong>client organization</strong> that gave you access to the app is, as a rule, the <strong>controller</strong> of your data — it decides who uses the app and for what purpose.</li>
+                        <li><strong>MonAmieNet</strong> acts as the <strong>processor</strong>, handling data on the organization's behalf, following its instructions and this policy.</li>
+                    </ul>
+                    <p>This policy applies to every version of the MonAmie app published by MonAmieNet.</p>
+                </div>
+            </section>
+
+            <!-- 2 -->
+            <section id="data-we-collect">
+                <h2><span class="num">2</span>
+                    <span class="only-pt">Quais dados coletamos e por quê</span>
+                    <span class="only-en">What data we collect and why</span>
+                </h2>
+
+                <div class="rounded-2xl border border-slate-200 overflow-hidden my-5">
+                    <table class="data-table only-pt">
+                        <thead>
+                            <tr><th>Categoria</th><th>Dados</th><th>Finalidade</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Conta Google</td>
+                                <td data-label="Dados">Nome, endereço de e-mail, identificador da conta e foto de perfil, obtidos quando você entra com sua conta Google.</td>
+                                <td data-label="Finalidade">Autenticar você e identificá-lo para os demais membros da sua equipe.</td>
+                            </tr>
+                            <tr>
+                                <td>Grupos da organização</td>
+                                <td data-label="Dados">Grupos do Google Workspace da sua organização dos quais você faz parte e seus respectivos membros; grupo que você selecionou como ativo.</td>
+                                <td data-label="Finalidade">Definir a equipe com a qual sua localização é compartilhada e quem você pode ver no mapa.</td>
+                            </tr>
+                            <tr>
+                                <td>Localização precisa</td>
+                                <td data-label="Dados">Latitude, longitude e data/hora, coletadas aproximadamente a cada 5 minutos <strong>somente enquanto o rastreamento estiver ativado</strong> — inclusive com o aplicativo fechado ou em segundo plano.</td>
+                                <td data-label="Finalidade">Mostrar sua posição atual e seu trajeto do dia aos membros do seu grupo ativo, para fins de coordenação da equipe.</td>
+                            </tr>
+                            <tr>
+                                <td>Histórico de posições</td>
+                                <td data-label="Dados">Registro das posições enviadas, com data/hora e grupo ativo no momento.</td>
+                                <td data-label="Finalidade">Permitir a consulta de trajetos de dias anteriores pela equipe.</td>
+                            </tr>
+                            <tr>
+                                <td>Status de atividade</td>
+                                <td data-label="Dados">Se o rastreamento está ligado ou desligado e o horário do último sinal de atividade do aplicativo.</td>
+                                <td data-label="Finalidade">Indicar à equipe se a sua posição está atualizada.</td>
+                            </tr>
+                            <tr>
+                                <td>Dados técnicos</td>
+                                <td data-label="Dados">Registros gerados automaticamente pelos serviços de infraestrutura, como endereço IP e informações básicas do dispositivo e do sistema operacional.</td>
+                                <td data-label="Finalidade">Autenticação, segurança, prevenção de abuso e funcionamento do serviço.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="data-table only-en">
+                        <thead>
+                            <tr><th>Category</th><th>Data</th><th>Purpose</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Google account</td>
+                                <td data-label="Data">Name, email address, account identifier and profile photo, obtained when you sign in with your Google account.</td>
+                                <td data-label="Purpose">Authenticate you and identify you to the other members of your team.</td>
+                            </tr>
+                            <tr>
+                                <td>Organization groups</td>
+                                <td data-label="Data">Your organization's Google Workspace groups you belong to and their members; the group you selected as active.</td>
+                                <td data-label="Purpose">Determine which team your location is shared with and who you can see on the map.</td>
+                            </tr>
+                            <tr>
+                                <td>Precise location</td>
+                                <td data-label="Data">Latitude, longitude and timestamp, collected roughly every 5 minutes <strong>only while tracking is switched on</strong> — including when the app is closed or in the background.</td>
+                                <td data-label="Purpose">Show your current position and today's route to members of your active group, for team coordination.</td>
+                            </tr>
+                            <tr>
+                                <td>Location history</td>
+                                <td data-label="Data">A record of the positions sent, with timestamp and the group active at that moment.</td>
+                                <td data-label="Purpose">Let your team review routes from previous days.</td>
+                            </tr>
+                            <tr>
+                                <td>Activity status</td>
+                                <td data-label="Data">Whether tracking is on or off, and the time of the app's last activity signal.</td>
+                                <td data-label="Purpose">Let your team know whether your position is up to date.</td>
+                            </tr>
+                            <tr>
+                                <td>Technical data</td>
+                                <td data-label="Data">Logs automatically generated by infrastructure services, such as IP address and basic device and operating-system information.</td>
+                                <td data-label="Purpose">Authentication, security, abuse prevention and keeping the service running.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="only-pt">
+                    <p>Uma cópia do seu perfil (nome, e-mail e foto) também é guardada <strong>localmente no seu dispositivo</strong> para manter sua sessão ativa. Ela é removida quando você sai da conta ou desinstala o aplicativo.</p>
+                    <h3>O que não coletamos</h3>
+                    <ul>
+                        <li>Contatos, fotos, arquivos, câmera ou microfone.</li>
+                        <li>Conteúdo de chamadas ou mensagens. Ao iniciar uma chamada, o aplicativo apenas copia o e-mail do colega para a área de transferência e abre o Google Meet; a chamada é regida pela política de privacidade do Google.</li>
+                        <li>Dados financeiros, de saúde ou outros dados pessoais sensíveis.</li>
+                        <li>Identificadores de publicidade. O aplicativo não contém anúncios nem ferramentas de rastreamento publicitário.</li>
+                    </ul>
+                </div>
+                <div class="only-en">
+                    <p>A copy of your profile (name, email and photo) is also stored <strong>locally on your device</strong> to keep you signed in. It is removed when you sign out or uninstall the app.</p>
+                    <h3>What we do not collect</h3>
+                    <ul>
+                        <li>Contacts, photos, files, camera or microphone.</li>
+                        <li>Call or message content. When you start a call, the app only copies your teammate's email to the clipboard and opens Google Meet; the call itself is governed by Google's privacy policy.</li>
+                        <li>Financial, health or other sensitive personal data.</li>
+                        <li>Advertising identifiers. The app contains no ads and no advertising trackers.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 3 -->
+            <section id="background-location">
+                <h2><span class="num">3</span>
+                    <span class="only-pt">Localização em segundo plano</span>
+                    <span class="only-en">Background location</span>
+                </h2>
+                <div class="rounded-2xl bg-brand-50/70 border border-brand-200/70 p-5 sm:p-6">
+                    <div class="flex gap-3">
+                        <i data-lucide="radar" class="w-5 h-5 text-brand-700 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <div class="only-pt">
+                                <p class="!text-slate-700"><strong>O MonAmie coleta dados de localização para permitir o compartilhamento da sua posição em tempo real com a sua equipe, mesmo quando o aplicativo está fechado ou não está em uso</strong>, enquanto o rastreamento estiver ativado.</p>
+                                <ul>
+                                    <li>A coleta só começa depois que <strong>você ativa o rastreamento</strong> no aplicativo e concede a permissão de localização “Permitir o tempo todo”.</li>
+                                    <li>Enquanto o rastreamento estiver ativo, uma <strong>notificação permanente</strong> fica visível no seu dispositivo.</li>
+                                    <li>Você pode interromper a coleta a qualquer momento: desligando o rastreamento no aplicativo, saindo da sua conta ou revogando a permissão de localização nas configurações do sistema.</li>
+                                    <li>A localização é usada exclusivamente para a coordenação da sua equipe — nunca para publicidade.</li>
+                                </ul>
+                            </div>
+                            <div class="only-en">
+                                <p class="!text-slate-700"><strong>MonAmie collects location data to enable real-time sharing of your position with your team, even when the app is closed or not in use</strong>, while tracking is switched on.</p>
+                                <ul>
+                                    <li>Collection only starts after <strong>you switch tracking on</strong> in the app and grant the “Allow all the time” location permission.</li>
+                                    <li>While tracking is on, a <strong>persistent notification</strong> stays visible on your device.</li>
+                                    <li>You can stop collection at any time: by switching tracking off in the app, signing out, or revoking the location permission in your system settings.</li>
+                                    <li>Location is used exclusively for team coordination — never for advertising.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4 -->
+            <section id="permissions">
+                <h2><span class="num">4</span>
+                    <span class="only-pt">Permissões do dispositivo</span>
+                    <span class="only-en">Device permissions</span>
+                </h2>
+                <div class="only-pt">
+                    <ul>
+                        <li><strong>Localização precisa e aproximada</strong> — exibir e compartilhar sua posição.</li>
+                        <li><strong>Localização em segundo plano</strong> — continuar enviando sua posição com o aplicativo fechado, enquanto o rastreamento estiver ativo.</li>
+                        <li><strong>Serviço em primeiro plano e manter o dispositivo ativo</strong> — manter o rastreamento funcionando de forma confiável e exibir a notificação de rastreamento.</li>
+                        <li><strong>Notificações</strong> — exibir a notificação de rastreamento ativo e avisos do aplicativo.</li>
+                        <li><strong>Internet</strong> — comunicar-se com nossos servidores e carregar o mapa.</li>
+                    </ul>
+                    <p>O aplicativo também pode solicitar que você o exclua das restrições de economia de bateria, pois algumas fabricantes interrompem serviços em segundo plano. Recusar essa solicitação não impede o uso do aplicativo, mas pode tornar o rastreamento menos confiável.</p>
+                </div>
+                <div class="only-en">
+                    <ul>
+                        <li><strong>Precise and approximate location</strong> — display and share your position.</li>
+                        <li><strong>Background location</strong> — keep sending your position while the app is closed, as long as tracking is on.</li>
+                        <li><strong>Foreground service and wake lock</strong> — keep tracking running reliably and show the tracking notification.</li>
+                        <li><strong>Notifications</strong> — show the active-tracking notification and app alerts.</li>
+                        <li><strong>Internet</strong> — communicate with our servers and load the map.</li>
+                    </ul>
+                    <p>The app may also ask you to exempt it from battery-saving restrictions, because some manufacturers stop background services. Declining doesn't prevent you from using the app, but tracking may be less reliable.</p>
+                </div>
+            </section>
+
+            <!-- 5 -->
+            <section id="sharing">
+                <h2><span class="num">5</span>
+                    <span class="only-pt">Com quem compartilhamos seus dados</span>
+                    <span class="only-en">Who we share your data with</span>
+                </h2>
+                <div class="only-pt">
+                    <p><strong>Não vendemos nem alugamos seus dados pessoais.</strong> Eles são acessíveis apenas por:</p>
+                    <ul>
+                        <li><strong>Membros do seu grupo ativo</strong>, autenticados na versão do aplicativo da sua organização: podem ver seu nome, foto, posição atual e trajetos.</li>
+                        <li><strong>Sua organização</strong>, por meio dos administradores por ela designados.</li>
+                        <li><strong>MonAmieNet</strong>, apenas na medida necessária para suporte, manutenção e segurança do serviço.</li>
+                        <li><strong>Google (Firebase e Google Workspace)</strong>, que fornece a autenticação, o banco de dados e as funções de servidor, além das informações de grupos da sua organização. Consulte a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade do Google</a>.</li>
+                        <li><strong>OpenStreetMap</strong>, cujos servidores fornecem as imagens do mapa. Ao carregar o mapa, esses servidores recebem seu endereço IP e a área visualizada, mas não sua identidade nem as posições registradas pelo aplicativo. Consulte a <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener noreferrer">política da OpenStreetMap Foundation</a>.</li>
+                        <li><strong>Autoridades públicas</strong>, quando exigido por lei ou ordem judicial.</li>
+                    </ul>
+                </div>
+                <div class="only-en">
+                    <p><strong>We do not sell or rent your personal data.</strong> It is accessible only to:</p>
+                    <ul>
+                        <li><strong>Members of your active group</strong>, signed in to your organization's version of the app: they can see your name, photo, current position and routes.</li>
+                        <li><strong>Your organization</strong>, through the administrators it designates.</li>
+                        <li><strong>MonAmieNet</strong>, only as needed for support, maintenance and security of the service.</li>
+                        <li><strong>Google (Firebase and Google Workspace)</strong>, which provides authentication, database and server functions, as well as your organization's group information. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.</li>
+                        <li><strong>OpenStreetMap</strong>, whose servers provide the map images. When the map loads, those servers receive your IP address and the area being viewed, but not your identity or the positions recorded by the app. See the <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener noreferrer">OpenStreetMap Foundation policy</a>.</li>
+                        <li><strong>Public authorities</strong>, when required by law or court order.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 6 -->
+            <section id="legal-basis">
+                <h2><span class="num">6</span>
+                    <span class="only-pt">Bases legais do tratamento</span>
+                    <span class="only-en">Legal bases for processing</span>
+                </h2>
+                <div class="only-pt">
+                    <p>Tratamos seus dados com fundamento no art. 7º da LGPD, conforme o caso:</p>
+                    <ul>
+                        <li><strong>Consentimento</strong> — para a coleta de localização, que depende da sua ativação do rastreamento e da concessão das permissões do sistema, e pode ser revogado a qualquer momento.</li>
+                        <li><strong>Execução de contrato</strong> — para fornecer o serviço contratado pela sua organização e permitir seu acesso a ele.</li>
+                        <li><strong>Legítimo interesse</strong> — para segurança, prevenção de fraudes e melhoria do funcionamento do serviço, respeitados seus direitos e expectativas.</li>
+                        <li><strong>Cumprimento de obrigação legal ou regulatória</strong> — quando a lei exigir a guarda ou o fornecimento de informações.</li>
+                    </ul>
+                </div>
+                <div class="only-en">
+                    <p>We process your data under Article 7 of the LGPD, as applicable:</p>
+                    <ul>
+                        <li><strong>Consent</strong> — for location collection, which depends on you switching tracking on and granting system permissions, and can be withdrawn at any time.</li>
+                        <li><strong>Performance of a contract</strong> — to provide the service your organization has contracted and give you access to it.</li>
+                        <li><strong>Legitimate interest</strong> — for security, fraud prevention and keeping the service working well, respecting your rights and expectations.</li>
+                        <li><strong>Legal or regulatory obligation</strong> — when the law requires us to keep or provide information.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 7 -->
+            <section id="international">
+                <h2><span class="num">7</span>
+                    <span class="only-pt">Transferência internacional de dados</span>
+                    <span class="only-en">International data transfer</span>
+                </h2>
+                <div class="only-pt">
+                    <p>Os serviços de infraestrutura do Google podem armazenar e processar dados em servidores localizados fora do Brasil. Nesses casos, a transferência ocorre com as garantias previstas no art. 33 da LGPD, incluindo as cláusulas contratuais e os padrões de segurança adotados pelo Google.</p>
+                </div>
+                <div class="only-en">
+                    <p>Google's infrastructure services may store and process data on servers located outside Brazil. In such cases, the transfer takes place under the safeguards set out in Article 33 of the LGPD, including the contractual clauses and security standards adopted by Google.</p>
+                </div>
+            </section>
+
+            <!-- 8 -->
+            <section id="retention">
+                <h2><span class="num">8</span>
+                    <span class="only-pt">Por quanto tempo guardamos os dados</span>
+                    <span class="only-en">How long we keep data</span>
+                </h2>
+                <div class="only-pt">
+                    <ul>
+                        <li><strong>Perfil e status de atividade:</strong> enquanto sua conta estiver ativa na versão do aplicativo da sua organização.</li>
+                        <li><strong>Histórico de posições:</strong> pelo período definido pela sua organização ou até que você ou ela solicitem a exclusão.</li>
+                        <li><strong>Dados no dispositivo:</strong> até você sair da conta ou desinstalar o aplicativo.</li>
+                    </ul>
+                    <p>Quando a exclusão for solicitada, ou ao término do contrato com a sua organização, os dados serão eliminados em até 30 dias, salvo quando a lei exigir sua conservação.</p>
+                </div>
+                <div class="only-en">
+                    <ul>
+                        <li><strong>Profile and activity status:</strong> for as long as your account is active in your organization's version of the app.</li>
+                        <li><strong>Location history:</strong> for the period defined by your organization, or until you or your organization request deletion.</li>
+                        <li><strong>On-device data:</strong> until you sign out or uninstall the app.</li>
+                    </ul>
+                    <p>When deletion is requested, or when the contract with your organization ends, the data will be deleted within 30 days, unless the law requires us to keep it.</p>
+                </div>
+            </section>
+
+            <!-- 9 -->
+            <section id="security">
+                <h2><span class="num">9</span>
+                    <span class="only-pt">Como protegemos seus dados</span>
+                    <span class="only-en">How we protect your data</span>
+                </h2>
+                <div class="only-pt">
+                    <ul>
+                        <li>Criptografia em trânsito (HTTPS/TLS) em todas as comunicações e criptografia em repouso nos servidores.</li>
+                        <li>Acesso restrito a usuários autenticados com conta Google da organização, controlado por regras de segurança no servidor.</li>
+                        <li>Infraestrutura isolada por organização: cada versão do aplicativo possui seu próprio projeto e banco de dados.</li>
+                        <li>Acesso interno da equipe MonAmieNet limitado ao mínimo necessário.</li>
+                    </ul>
+                    <p>Nenhum sistema é totalmente imune a falhas. Caso ocorra um incidente de segurança que possa gerar risco relevante, comunicaremos a sua organização, os titulares afetados e a ANPD, conforme exigido pela LGPD.</p>
+                </div>
+                <div class="only-en">
+                    <ul>
+                        <li>Encryption in transit (HTTPS/TLS) for all communications and encryption at rest on servers.</li>
+                        <li>Access restricted to users signed in with the organization's Google account, enforced by server-side security rules.</li>
+                        <li>Per-organization isolated infrastructure: each version of the app has its own project and database.</li>
+                        <li>Internal MonAmieNet staff access limited to the minimum necessary.</li>
+                    </ul>
+                    <p>No system is completely immune to failures. If a security incident occurs that may pose a significant risk, we will notify your organization, the affected individuals and Brazil's data protection authority (ANPD), as required by the LGPD.</p>
+                </div>
+            </section>
+
+            <!-- 10 -->
+            <section id="rights">
+                <h2><span class="num">10</span>
+                    <span class="only-pt">Seus direitos</span>
+                    <span class="only-en">Your rights</span>
+                </h2>
+                <div class="only-pt">
+                    <p>Nos termos do art. 18 da LGPD, você pode, a qualquer momento:</p>
+                    <ul>
+                        <li>Confirmar a existência de tratamento e acessar seus dados;</li>
+                        <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+                        <li>Solicitar a anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em desconformidade com a lei;</li>
+                        <li>Solicitar a portabilidade dos dados a outro fornecedor;</li>
+                        <li>Solicitar a eliminação dos dados tratados com base no seu consentimento;</li>
+                        <li>Obter informações sobre as entidades com as quais seus dados foram compartilhados;</li>
+                        <li>Ser informado sobre a possibilidade de não fornecer consentimento e suas consequências;</li>
+                        <li>Revogar o consentimento;</li>
+                        <li>Apresentar reclamação à Autoridade Nacional de Proteção de Dados (<a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">ANPD</a>).</li>
+                    </ul>
+                    <p>Para exercer seus direitos, entre em contato pelo e-mail indicado na seção <a href="#contact">Contato</a>. Como a sua organização é a controladora dos dados, poderemos encaminhar a solicitação a ela quando necessário.</p>
+                </div>
+                <div class="only-en">
+                    <p>Under Article 18 of the LGPD, you may at any time:</p>
+                    <ul>
+                        <li>Confirm whether your data is processed and access it;</li>
+                        <li>Correct incomplete, inaccurate or outdated data;</li>
+                        <li>Request anonymization, blocking or deletion of unnecessary or excessive data, or data processed unlawfully;</li>
+                        <li>Request portability of your data to another provider;</li>
+                        <li>Request deletion of data processed based on your consent;</li>
+                        <li>Learn which entities your data has been shared with;</li>
+                        <li>Be informed about the option of not giving consent and its consequences;</li>
+                        <li>Withdraw your consent;</li>
+                        <li>File a complaint with Brazil's National Data Protection Authority (<a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">ANPD</a>).</li>
+                    </ul>
+                    <p>To exercise your rights, contact us at the email in the <a href="#contact">Contact</a> section. Because your organization is the data controller, we may forward your request to it when necessary.</p>
+                </div>
+            </section>
+
+            <!-- 11 -->
+            <section id="delete-account">
+                <h2><span class="num">11</span>
+                    <span class="only-pt">Exclusão de conta e de dados</span>
+                    <span class="only-en">Account and data deletion</span>
+                </h2>
+                <div class="only-pt">
+                    <p>Você pode solicitar a exclusão da sua conta e de todos os dados associados a ela a qualquer momento, sem precisar desinstalar o aplicativo:</p>
+                    <ol class="list-decimal pl-5 space-y-1.5 my-3 text-slate-600 text-[0.95rem] leading-relaxed marker:text-brand-700 marker:font-semibold">
+                        <li>Envie um e-mail para <a href="mailto:contact@monamienet.org?subject=Exclus%C3%A3o%20de%20conta%20%E2%80%93%20MonAmie">contact@monamienet.org</a> <strong>a partir do e-mail da conta Google</strong> que você usa no aplicativo.</li>
+                        <li>No assunto, escreva <strong>“Exclusão de conta – MonAmie &lt;nome da instância&gt;”</strong>, indicando a versão do aplicativo que você usa.</li>
+                        <li>Confirmaremos o recebimento e concluiremos a exclusão em até <strong>30 dias</strong>.</li>
+                    </ol>
+                    <p><strong>Serão excluídos:</strong> seu perfil (nome, e-mail e foto), seu status de atividade e todo o seu histórico de posições.</p>
+                    <p><strong>Poderão ser mantidos</strong>, pelo prazo exigido, apenas os dados cuja conservação seja obrigatória por lei. Os dados guardados no seu dispositivo são apagados ao sair da conta ou desinstalar o aplicativo.</p>
+                    <p>Se quiser apenas interromper a coleta sem excluir a conta, basta desligar o rastreamento no aplicativo.</p>
+                </div>
+                <div class="only-en">
+                    <p>You can request deletion of your account and all data associated with it at any time, without having to uninstall the app:</p>
+                    <ol class="list-decimal pl-5 space-y-1.5 my-3 text-slate-600 text-[0.95rem] leading-relaxed marker:text-brand-700 marker:font-semibold">
+                        <li>Send an email to <a href="mailto:contact@monamienet.org?subject=Account%20deletion%20%E2%80%93%20MonAmie">contact@monamienet.org</a> <strong>from the Google account email</strong> you use in the app.</li>
+                        <li>Use the subject <strong>“Account deletion – MonAmie &lt;instance name&gt;”</strong>, naming the version of the app you use.</li>
+                        <li>We will acknowledge your request and complete the deletion within <strong>30 days</strong>.</li>
+                    </ol>
+                    <p><strong>Deleted:</strong> your profile (name, email and photo), your activity status and your entire location history.</p>
+                    <p><strong>Possibly retained</strong>, for the required period, only data we are legally obliged to keep. Data stored on your device is erased when you sign out or uninstall the app.</p>
+                    <p>If you only want to stop data collection without deleting your account, just switch tracking off in the app.</p>
+                </div>
+            </section>
+
+            <!-- 12 -->
+            <section id="children">
+                <h2><span class="num">12</span>
+                    <span class="only-pt">Menores de idade</span>
+                    <span class="only-en">Children</span>
+                </h2>
+                <div class="only-pt">
+                    <p>O MonAmie é uma ferramenta de uso profissional e organizacional, não destinada a menores de 18 anos. Não coletamos intencionalmente dados de crianças ou adolescentes. Se identificarmos esse tipo de dado, ele será excluído.</p>
+                </div>
+                <div class="only-en">
+                    <p>MonAmie is a professional and organizational tool, not intended for anyone under 18. We do not knowingly collect data from children or teenagers. If we find such data, it will be deleted.</p>
+                </div>
+            </section>
+
+            <!-- 13 -->
+            <section id="changes">
+                <h2><span class="num">13</span>
+                    <span class="only-pt">Alterações nesta política</span>
+                    <span class="only-en">Changes to this policy</span>
+                </h2>
+                <div class="only-pt">
+                    <p>Podemos atualizar esta política para refletir mudanças no aplicativo ou na legislação. A data da última atualização aparece no topo desta página. Mudanças relevantes, especialmente as que afetem a coleta de localização, serão comunicadas pelo aplicativo ou por meio da sua organização antes de entrarem em vigor.</p>
+                </div>
+                <div class="only-en">
+                    <p>We may update this policy to reflect changes in the app or in the law. The date of the latest update is shown at the top of this page. Significant changes, especially those affecting location collection, will be announced in the app or through your organization before they take effect.</p>
+                </div>
+            </section>
+
+            <!-- 14 -->
+            <section id="contact">
+                <h2><span class="num">14</span>
+                    <span class="only-pt">Contato e encarregado de dados</span>
+                    <span class="only-en">Contact and data protection officer</span>
+                </h2>
+                <div class="only-pt">
+                    <p>Para dúvidas sobre esta política, solicitações relativas aos seus dados ou contato com o encarregado pelo tratamento de dados pessoais (DPO) da MonAmieNet:</p>
+                </div>
+                <div class="only-en">
+                    <p>For questions about this policy, requests about your data, or to reach MonAmieNet's data protection officer (DPO):</p>
+                </div>
+                <a href="mailto:contact@monamienet.org" class="!no-underline mt-4 inline-flex items-center gap-3 p-3 pr-5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/50 transition-all group">
+                    <span class="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center group-hover:bg-brand-700 group-hover:text-white transition-colors">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </span>
+                    <span>
+                        <span class="block text-xs text-slate-400 font-medium">
+                            <span class="only-pt">E-mail</span><span class="only-en">Email</span>
+                        </span>
+                        <span class="block text-sm font-semibold text-slate-800">contact@monamienet.org</span>
+                    </span>
+                </a>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+        <span>&copy; <span id="year"></span> MonAmie. <span class="only-pt">Todos os direitos reservados.</span><span class="only-en">All rights reserved.</span></span>
+        <div class="flex items-center gap-4">
+            <a href="/" class="hover:text-brand-700 transition-colors"><span class="only-pt">Início</span><span class="only-en">Home</span></a>
+            <a href="#top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="no-print flex items-center gap-1 hover:text-brand-700 transition-colors">
+                <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+                <span class="only-pt">Voltar ao topo</span><span class="only-en">Back to top</span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        lucide.createIcons();
+
+        // Language toggle
+        const TITLES = {
+            pt: 'Política de Privacidade — MonAmie',
+            en: 'Privacy Policy — MonAmie',
+        };
+
+        function applyLang(lang) {
+            const root = document.documentElement;
+            root.classList.remove('lang-pt', 'lang-en');
+            root.classList.add('lang-' + lang);
+            root.lang = lang === 'pt' ? 'pt-BR' : 'en-US';
+            document.title = TITLES[lang];
+            document.querySelectorAll('.lang-btn').forEach((btn) => {
+                const active = btn.dataset.setLang === lang;
+                btn.classList.toggle('bg-white', active);
+                btn.classList.toggle('text-brand-700', active);
+                btn.classList.toggle('shadow-sm', active);
+                btn.classList.toggle('text-slate-500', !active);
+                btn.setAttribute('aria-pressed', String(active));
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.setLang;
+                applyLang(lang);
+                try { localStorage.setItem('monamie-privacy-lang', lang); } catch (e) {}
+                try {
+                    const url = new URL(location.href);
+                    url.searchParams.set('lang', lang);
+                    history.replaceState(null, '', url);
+                } catch (e) {}
+            });
+        });
+
+        applyLang(document.documentElement.classList.contains('lang-en') ? 'en' : 'pt');
+
+        // Highlight the current section in the table of contents
+        const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                tocLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        document.querySelectorAll('.policy section').forEach((s) => observer.observe(s));
+    </script>
+</body>
+</html>

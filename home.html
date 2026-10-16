@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-US" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonAmie — Under Construction</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4fd',
+                            100: '#e1e9fa',
+                            200: '#c8d8f6',
+                            300: '#a2c0f0',
+                            400: '#75a0e6',
+                            500: '#527edc',
+                            600: '#385ea0',
+                            700: '#315399', /* Exact brand tone from SVG */
+                            800: '#28437d',
+                            900: '#233866',
+                            950: '#172342',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'radar-sweep': 'sweep 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        sweep: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafbfc;
+        }
+
+        /* Delicate grid pattern background */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(49, 83, 153, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Custom subtle radar glow animation */
+        .radar-glow {
+            filter: drop-shadow(0px 10px 30px rgba(49, 83, 153, 0.2));
+        }
+
+        /* Glassmorphism card effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+
+<body class="h-full bg-slate-50 text-slate-800 antialiased flex flex-col justify-between selection:bg-brand-700 selection:text-white relative overflow-x-hidden bg-grid-pattern">
+
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-300/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <header class="w-full max-w-5xl mx-auto px-6 pt-8 pb-4 flex items-center justify-between z-10">
+        <div class="flex items-center space-x-2">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200/60 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-700 animate-ping mr-2"></span>
+                Under Development
+            </span>
+        </div>
+
+        <button id="btnContactModal" onclick="openContactModal()" class="text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-700 transition-colors flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>Contact</span>
+        </button>
+    </header>
+
+    <main class="w-full max-w-3xl mx-auto px-6 py-8 my-auto flex flex-col items-center text-center z-10">
+        
+        <!-- Animated Brand Logo Render -->
+        <div class="relative mb-6 group cursor-pointer" onclick="triggerLogoPulse()">
+            <div class="absolute inset-0 bg-brand-700/10 rounded-full blur-xl transition-all duration-500 group-hover:bg-brand-700/20 group-hover:scale-110"></div>
+            
+            <div class="relative radar-glow transition-transform duration-500 hover:scale-105">
+                <!-- SVG decoded from provided Base64 file -->
+                <svg viewBox="0 0 512 512" version="1.1" id="MonAmieLogoSVG" class="w-48 h-48 sm:w-60 sm:h-60 mx-auto drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+                    <g id="g3">
+                        <g id="g4">
+                            <!-- Radar icon mark -->
+                            <path fill="#315399" d="m 257.5442,427.17808 c 1.1822,-0.011 2.36077,-0.0272 3.5457,-0.0572 34.43818,-0.8843 69.1415,-10.12586 101.04096,-28.5418 C 464.21691,339.64697 499.24165,208.87507 440.30412,106.8011 381.36659,4.7272084 250.58355,-30.325183 148.49932,28.60783 77.948617,69.336442 39.449907,144.37751 41.837916,220.54437 45.073079,160.76156 74.432887,103.81232 124.46487,66.768887 c 9.83171,-8.734045 20.67853,-16.628277 32.51871,-23.463892 94.14024,-54.347186 214.26983,-22.15288 268.62112,71.980515 54.35219,94.13158 22.18216,214.25103 -71.95808,268.59821 -32.36071,18.68105 -67.79951,27.1282 -102.57366,26.35647 -57.47929,-1.27106 -113.15623,-27.75465 -150.2158,-74.92937 l 29.59498,-20.91087 c 30.20878,38.89011 76.28012,60.46645 123.54365,60.82962 0.87166,0.007 1.73426,0.011 2.61046,0 0.87529,-0.01 1.76422,-0.0345 2.63861,-0.0563 25.42913,-0.65097 51.04894,-7.45845 74.59671,-21.05249 C 409.19553,310.6194 435.08955,214.01105 391.58419,138.66403 348.07883,63.317033 251.4634,37.423587 176.10671,80.926756 129.46335,107.85521 101.77696,155.12438 97.765466,205.10999 109.14256,163.91835 136.19154,126.35377 175.34219,101.43996 c 0.0181,-0.0118 0.0391,-0.0164 0.0563,-0.0272 l 0.31235,-0.19974 c 2.86925,-1.949267 5.82928,-3.827721 8.88012,-5.589055 67.41363,-38.8917348 153.3756,-15.882894 192.29563,51.523615 38.92002,67.40556 15.88344,153.36056 -51.52836,192.27609 -21.06532,12.16229 -43.93755,18.26886 -66.62365,18.86808 -43.54078,1.1494 -86.38421,-18.02918 -114.37749,-53.70803 L 180.535,279.02073 c 18.37043,22.08024 45.44936,34.30972 73.17843,34.52762 1.06235,0.01 2.11561,0 3.17796,-0.0272 15.46758,-0.39221 31.03141,-4.53499 45.34312,-12.79599 45.79441,-26.4382 61.56707,-85.2314 35.12736,-131.02249 -26.44064,-45.78928 -85.26738,-61.5614 -131.06269,-35.12321 -19.29022,11.13727 -33.25326,28.00887 -40.97208,47.23829 17.08381,-19.12411 40.28201,-33.49079 67.13485,-40.08854 0.0363,-0.0119 0.0763,-0.0181 0.11351,-0.03 34.05592,-9.79357 71.54586,4.37247 90.0879,36.48688 21.85528,37.84875 8.93913,85.98951 -28.9131,107.84095 -11.82926,6.83016 -24.64552,10.27204 -37.36916,10.6134 -23.29899,0.62192 -46.21479,-9.16803 -61.91391,-27.46412 l 37.22752,-26.302 c 4.9912,4.35432 11.49876,7.00902 18.641,7.00902 15.68732,0 28.4046,-12.71703 28.4046,-28.40107 0,-15.68497 -12.71546,-28.40108 -28.40369,-28.40108 -15.68731,0 -28.40188,12.71702 -28.40188,28.40197 0,1.07769 0.0544,2.13086 0.1707,3.17768 l -109.04398,52.03384 -3.65918,1.58883 0.0544,0.14165 -56.522288,26.98293 -8.398894,4.02927 4.795995,8.00047 18.13253,30.30131 4.680681,7.8307 7.490905,-5.27765 7.350167,-5.1914 c 41.676674,53.4429 105.453764,82.66745 170.560194,82.07912 z" id="path1" style="fill:#315399;fill-opacity:1;stroke-width:0.907951" />
+                            
+                            <!-- Brand typography "MonAmie" -->
+                            <path d="M -2.5033951e-6,510.63406 V 427.18874 H 25.215739 l 15.140829,56.92041 14.970067,-56.92041 h 25.272662 v 83.44532 H 64.946184 V 444.94791 L 48.382345,510.63406 H 32.160029 L 15.65311,444.94791 v 65.68615 z M 93.520228,479.55552 q 0,-7.96886 3.927508,-15.42543 3.927504,-7.45657 11.099484,-11.38408 7.22889,-3.92751 16.10847,-3.92751 13.71782,0 22.48356,8.9365 8.76575,8.87959 8.76575,22.48357 0,13.71781 -8.87959,22.76816 -8.82266,8.99342 -22.25588,8.99342 -8.31038,0 -15.88079,-3.75674 -7.5135,-3.75675 -11.441004,-10.98564 -3.927508,-7.28581 -3.927508,-17.70225 z m 16.393082,0.85381 q 0,8.99342 4.26903,13.77474 4.26903,4.78131 10.53027,4.78131 6.26125,0 10.47336,-4.78131 4.26903,-4.78132 4.26903,-13.88858 0,-8.87959 -4.26903,-13.6609 -4.21211,-4.78132 -10.47336,-4.78132 -6.26124,0 -10.53027,4.78132 -4.26903,4.78131 -4.26903,13.77474 z m 113.4993,30.22473 H 207.41798 V 479.7832 q 0,-9.79031 -1.02457,-12.63633 -1.02457,-2.90294 -3.3583,-4.49671 -2.27682,-1.59377 -5.52128,-1.59377 -4.15519,0 -7.45658,2.27681 -3.30138,2.27682 -4.55363,6.03357 -1.19533,3.75674 -1.19533,13.88858 v 27.37871 h -15.99463 v -60.44947 h 14.85622 v 8.87958 q 7.91194,-10.24567 19.92215,-10.24567 5.2936,0 9.67647,1.93529 4.38287,1.87838 6.60276,4.83824 2.27682,2.95986 3.13063,6.71661 0.91072,3.75674 0.91072,10.75795 z m 91.58494,0 h -18.32837 l -7.28582,-18.95449 H 256.028 l -6.88737,18.95449 h -17.873 l 32.50155,-83.44532 h 17.81609 z M 283.97592,477.62023 272.478,446.65552 261.20776,477.62023 Z m 38.64895,-27.43564 h 14.74239 v 8.25346 q 7.91193,-9.61955 18.84065,-9.61955 5.80588,0 10.07491,2.39066 4.26903,2.39065 7.00121,7.22889 3.98443,-4.83824 8.59499,-7.22889 4.61055,-2.39066 9.84723,-2.39066 6.65968,0 11.27024,2.73218 4.61055,2.67526 6.88737,7.91194 1.65069,3.87058 1.65069,12.52249 v 38.64895 h -15.99464 v -34.55068 q 0,-8.99343 -1.65069,-11.61177 -2.21989,-3.41522 -6.83045,-3.41522 -3.3583,0 -6.31816,2.04913 -2.95986,2.04914 -4.26903,6.03357 -1.30917,3.9275 -1.30917,12.46557 v 29.0294 h -15.99464 v -33.12767 q 0,-8.82267 -0.8538,-11.38409 -0.85381,-2.56141 -2.67526,-3.81366 -1.76454,-1.25225 -4.83824,-1.25225 -3.69982,0 -6.65969,1.99221 -2.95986,1.99222 -4.26903,5.74896 -1.25225,3.75675 -1.25225,12.46557 v 29.37093 h -15.99463 z m 104.8474,-8.19654 v -14.79931 h 15.99463 v 14.79931 z m 0,68.64601 v -60.44947 h 15.99463 v 60.44947 z m 67.39377,-19.23909 15.93772,2.67525 q -3.0737,8.76575 -9.73339,13.3763 -6.60277,4.55363 -16.56384,4.55363 -15.76695,0 -23.33737,-10.30259 -5.97664,-8.25346 -5.97664,-20.83287 0,-15.02699 7.85502,-23.50813 7.85501,-8.53806 19.86522,-8.53806 13.49014,0 21.28823,8.9365 7.7981,8.87959 7.45658,27.26488 H 471.5856 q 0.17076,7.11505 3.87059,11.09948 3.69982,3.92751 9.2211,3.92751 3.75675,0 6.31817,-2.04914 2.56142,-2.04913 3.87058,-6.60276 z m 0.91073,-16.1654 q -0.17076,-6.94429 -3.58598,-10.53028 -3.41523,-3.6429 -8.31038,-3.6429 -5.23668,0 -8.65191,3.81366 -3.41522,3.81367 -3.3583,10.35952 z" id="text2" style="font-weight:bold;font-size:116.573px;line-height:0.8;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;fill:#315399;stroke-width:2.36031;paint-order:markers stroke fill" aria-label="MonAmie" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Subtitle and messaging -->
+        <p class="text-slate-600 text-lg sm:text-xl font-medium max-w-lg mb-8 leading-relaxed">
+            Something new and exclusive is being prepared for you.
+        </p>
+
+        <div class="w-full max-w-md bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 mb-8 glass-card">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="loader" class="w-3.5 h-3.5 text-brand-700 animate-spin"></i>
+                    Launch Status
+                </span>
+                <span class="text-brand-700 font-bold" id="progressPercentage">82%</span>
+            </div>
+            
+            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden p-0.5">
+                <div id="progressBar" class="bg-brand-700 h-full rounded-full transition-all duration-1000 ease-out" style="width: 82%;"></div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 grid grid-cols-3 text-center text-[11px] text-slate-500 font-medium">
+                <div class="text-slate-400">✓ Planning</div>
+                <div class="text-brand-700 font-semibold">● Development</div>
+                <div class="text-slate-400">○ Launch</div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-md mb-8 flex justify-center">
+            <a href="https://forms.gle/Q32d8nN8YPMzWC6c8" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-700 hover:bg-brand-800 active:scale-[0.98] text-white font-semibold text-sm transition-all shadow-md shadow-brand-700/20 flex items-center justify-center gap-2 group">
+                <i data-lucide="bell" class="w-4 h-4"></i>
+                <span>Notify Me</span>
+                <i data-lucide="external-link" class="w-4 h-4 opacity-75 group-hover:translate-x-0.5 transition-transform"></i>
+            </a>
+        </div>
+
+        <!-- Key values pill tags -->
+        <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-slate-500">
+            <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200/70 shadow-2xs flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-700"></i> Security & Quality
+            </span>
+            <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200/70 shadow-2xs flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-700"></i> Smart Design
+            </span>
+            <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200/70 shadow-2xs flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5 text-brand-700"></i> High Performance
+            </span>
+        </div>
+
+    </main>
+
+    <div id="contactModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-slate-100 transform scale-95 transition-all duration-300" id="modalContent">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-5 h-5 text-brand-700"></i>
+                    Contact Us
+                </h3>
+                <button onclick="closeContactModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <p class="text-slate-600 text-sm mb-6">
+                Need to get in touch while we finalize the site? Use our direct channel below:
+            </p>
+
+            <div class="space-y-3">
+                <button onclick="copyToClipboard('contact@monamienet.org', 'Email copied!')" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/50 transition-all group text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center group-hover:bg-brand-700 group-hover:text-white transition-colors">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-medium">Direct Email</div>
+                            <div class="text-xs sm:text-sm font-semibold text-slate-800">contact@monamienet.org</div>
+                        </div>
+                    </div>
+                    <i data-lucide="copy" class="w-4 h-4 text-slate-400 group-hover:text-brand-700 transition-colors"></i>
+                </button>
+            </div>
+
+            <button onclick="closeContactModal()" class="w-full mt-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium text-xs hover:bg-slate-50 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs font-medium translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toastMsg">Message sent</span>
+    </div>
+
+    <footer class="w-full max-w-5xl mx-auto px-6 py-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3 z-10">
+        <div class="flex items-center gap-2">
+            <span>&copy; <span id="year"></span> MonAmie. All rights reserved.</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Systems operational
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Handle Form Submission
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const input = document.getElementById('emailInput');
+            const btn = document.getElementById('submitBtn');
+            const feedback = document.getElementById('formFeedback');
+
+            if (input.value) {
+                btn.disabled = true;
+                btn.classList.add('opacity-80');
+                btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Saving...`;
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    input.value = '';
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-80');
+                    btn.innerHTML = `<span>Subscribed!</span> <i data-lucide="check" class="w-4 h-4"></i>`;
+                    feedback.classList.remove('hidden');
+                    lucide.createIcons();
+                    showToast("Successfully subscribed!");
+
+                    setTimeout(() => {
+                        btn.innerHTML = `<span>Notify Me</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+                        lucide.createIcons();
+                    }, 4000);
+                }, 800);
+            }
+        }
+
+        // Contact Modal Controllers
+        function openContactModal() {
+            const modal = document.getElementById('contactModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+        }
+
+        // Copy to clipboard helper
+        function copyToClipboard(text, successMessage) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast(successMessage);
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Pulse logo effect on click
+        function triggerLogoPulse() {
+            const progress = document.getElementById('progressBar');
+            progress.classList.add('brightness-125');
+            setTimeout(() => progress.classList.remove('brightness-125'), 600);
+        }
+    </script>
+</body>
+</html>

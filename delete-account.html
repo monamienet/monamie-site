@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusão de conta — MonAmie</title>
+    <meta name="description" content="Como solicitar a exclusão da sua conta e dos seus dados no aplicativo MonAmie, desenvolvido pela MonAmieNet. / How to request deletion of your MonAmie account and data.">
+    <link rel="canonical" href="https://monamienet.org/delete-account/">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo-mark.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4fd',
+                            100: '#e1e9fa',
+                            200: '#c8d8f6',
+                            300: '#a2c0f0',
+                            400: '#75a0e6',
+                            500: '#527edc',
+                            600: '#385ea0',
+                            700: '#315399',
+                            800: '#28437d',
+                            900: '#233866',
+                            950: '#172342',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Pick the language before first paint to avoid a flash of both versions.
+        // Shares the stored preference with the privacy policy page.
+        (function () {
+            var lang = null;
+            try { lang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+            if (lang !== 'pt' && lang !== 'en') {
+                try { lang = localStorage.getItem('monamie-privacy-lang'); } catch (e) {}
+            }
+            if (lang !== 'pt' && lang !== 'en') {
+                lang = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+            }
+            document.documentElement.classList.add('lang-' + lang);
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en-US';
+        })();
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafbfc;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(49, 83, 153, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Language switching */
+        html.lang-pt .only-en,
+        html.lang-en .only-pt { display: none !important; }
+
+        /* Long-form typography (same as the privacy policy) */
+        .policy section { scroll-margin-top: 6rem; }
+        .policy h2 {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+        .policy h2 .num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #315399;
+            background: #f0f4fd;
+            border: 1px solid #c8d8f6;
+            border-radius: 0.5rem;
+            padding: 0.1rem 0.5rem;
+            flex-shrink: 0;
+            position: relative;
+            top: -2px;
+        }
+        .policy p,
+        .policy li {
+            color: #475569;
+            line-height: 1.75;
+            font-size: 0.95rem;
+        }
+        .policy p + p { margin-top: 0.75rem; }
+        .policy ul { list-style: none; padding: 0; margin: 0.75rem 0; }
+        .policy ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin: 0.4rem 0;
+        }
+        .policy ul li::before {
+            content: '';
+            position: absolute;
+            left: 0.2rem;
+            top: 0.7em;
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: #315399;
+        }
+        .policy strong { color: #1e293b; font-weight: 600; }
+        .policy a { color: #315399; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+        .policy a:hover { color: #28437d; }
+
+        /* Numbered steps */
+        .steps { counter-reset: step; list-style: none; padding: 0; margin: 1rem 0; }
+        .steps > li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 2.75rem;
+            margin: 0 0 1.1rem;
+        }
+        .steps > li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.05rem;
+            width: 1.85rem;
+            height: 1.85rem;
+            border-radius: 0.6rem;
+            background: #315399;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media print {
+            header, .no-print { display: none !important; }
+            body { background: #fff; }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-700 selection:text-white relative overflow-x-hidden bg-grid-pattern">
+
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-300/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-30 glass-card !border-x-0 !border-t-0">
+        <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <img src="/assets/logo-mark.svg" alt="" class="w-8 h-8 transition-transform group-hover:scale-105">
+                <span class="font-bold text-brand-700 text-lg tracking-tight">MonAmie</span>
+            </a>
+
+            <div class="flex items-center gap-1 sm:gap-2">
+                <div class="inline-flex p-0.5 rounded-lg bg-slate-100 border border-slate-200/70 text-xs font-semibold" role="group" aria-label="Language / Idioma">
+                    <button type="button" data-set-lang="pt" class="lang-btn px-2.5 py-1 rounded-md transition-colors">PT</button>
+                    <button type="button" data-set-lang="en" class="lang-btn px-2.5 py-1 rounded-md transition-colors">EN</button>
+                </div>
+                <a href="/privacy/" class="hidden sm:flex text-sm font-medium text-slate-600 hover:text-brand-700 transition-colors items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100">
+                    <i data-lucide="shield" class="w-4 h-4"></i>
+                    <span class="only-pt">Política de Privacidade</span><span class="only-en">Privacy Policy</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 pt-12 pb-8">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200/60 shadow-sm mb-5">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span class="only-pt">Aplicativo MonAmie · desenvolvedor MonAmieNet</span>
+            <span class="only-en">MonAmie app · developer MonAmieNet</span>
+        </span>
+
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+            <span class="only-pt">Exclusão de conta e de dados</span>
+            <span class="only-en">Account and data deletion</span>
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            <span class="only-pt">Esta página explica como solicitar a exclusão da sua conta e dos dados associados a ela no aplicativo <strong class="text-slate-800">MonAmie</strong> (publicado na Google Play como <strong class="text-slate-800">“MonAmie &lt;nome da instância&gt;”</strong>), desenvolvido pela <strong class="text-slate-800">MonAmieNet</strong>.</span>
+            <span class="only-en">This page explains how to request deletion of your account and its associated data in the <strong class="text-slate-800">MonAmie</strong> app (published on Google Play as <strong class="text-slate-800">“MonAmie &lt;instance name&gt;”</strong>), developed by <strong class="text-slate-800">MonAmieNet</strong>.</span>
+        </p>
+    </div>
+
+    <!-- Body -->
+    <main class="policy relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 pb-16 space-y-6">
+
+        <!-- 1. Steps -->
+        <section id="how-to-request" class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-10">
+            <h2><span class="num">1</span>
+                <span class="only-pt">Como solicitar a exclusão</span>
+                <span class="only-en">How to request deletion</span>
+            </h2>
+
+            <div class="only-pt">
+                <p>Você pode pedir a exclusão a qualquer momento, sem precisar instalar ou abrir o aplicativo:</p>
+                <ol class="steps">
+                    <li><p>Envie um e-mail para <a href="mailto:contact@monamienet.org?subject=Exclus%C3%A3o%20de%20conta%20%E2%80%93%20MonAmie%20">contact@monamienet.org</a> <strong>a partir do endereço da conta Google</strong> que você usa para entrar no aplicativo. É assim que confirmamos que o pedido é seu.</p></li>
+                    <li><p>No assunto, escreva <strong>“Exclusão de conta – MonAmie &lt;nome da instância&gt;”</strong>, indicando a versão do aplicativo que você usa (o nome que aparece na Google Play).</p></li>
+                    <li><p>Se não puder enviar a partir desse endereço, informe no corpo do e-mail a conta Google cadastrada. Nesse caso, poderemos pedir uma confirmação adicional antes de excluir.</p></li>
+                    <li><p>Confirmaremos o recebimento e concluiremos a exclusão em até <strong>30 dias</strong>, avisando você por e-mail quando terminar.</p></li>
+                </ol>
+            </div>
+            <div class="only-en">
+                <p>You can request deletion at any time, without needing to install or open the app:</p>
+                <ol class="steps">
+                    <li><p>Send an email to <a href="mailto:contact@monamienet.org?subject=Account%20deletion%20%E2%80%93%20MonAmie%20">contact@monamienet.org</a> <strong>from the Google account address</strong> you use to sign in to the app. This is how we confirm the request is yours.</p></li>
+                    <li><p>Use the subject <strong>“Account deletion – MonAmie &lt;instance name&gt;”</strong>, naming the version of the app you use (the name shown on Google Play).</p></li>
+                    <li><p>If you can't write from that address, tell us the registered Google account in the body of the email. In that case we may ask for an extra confirmation before deleting.</p></li>
+                    <li><p>We will acknowledge your request and complete the deletion within <strong>30 days</strong>, letting you know by email when it's done.</p></li>
+                </ol>
+            </div>
+
+            <a href="mailto:contact@monamienet.org" data-mailto-pt="mailto:contact@monamienet.org?subject=Exclus%C3%A3o%20de%20conta%20%E2%80%93%20MonAmie%20" data-mailto-en="mailto:contact@monamienet.org?subject=Account%20deletion%20%E2%80%93%20MonAmie%20" class="mailto-btn no-print !no-underline mt-2 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 !text-white font-semibold text-sm shadow-sm transition-colors">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span class="only-pt">Solicitar exclusão por e-mail</span>
+                <span class="only-en">Request deletion by email</span>
+            </a>
+        </section>
+
+        <!-- 2. What is deleted / kept -->
+        <section id="what-is-deleted" class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-10">
+            <h2><span class="num">2</span>
+                <span class="only-pt">Quais dados são excluídos e quais são mantidos</span>
+                <span class="only-en">What data is deleted and what is kept</span>
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <div class="rounded-2xl border border-rose-200/70 bg-rose-50/40 p-5">
+                    <div class="flex items-center gap-2 mb-2 text-rose-700 font-semibold text-sm">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        <span class="only-pt">Excluídos</span><span class="only-en">Deleted</span>
+                    </div>
+                    <ul class="only-pt">
+                        <li>Perfil: nome, e-mail, foto de perfil e data de cadastro.</li>
+                        <li>Conta de acesso ao aplicativo (vínculo de login com a sua conta Google).</li>
+                        <li>Última localização conhecida, status de rastreamento e grupo ativo.</li>
+                        <li>Todo o histórico de posições (latitude, longitude, data/hora e grupo).</li>
+                    </ul>
+                    <ul class="only-en">
+                        <li>Profile: name, email, profile photo and sign-up date.</li>
+                        <li>Your app sign-in account (the link to your Google account).</li>
+                        <li>Last known location, tracking status and active group.</li>
+                        <li>Your entire location history (latitude, longitude, date/time and group).</li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5">
+                    <div class="flex items-center gap-2 mb-2 text-slate-700 font-semibold text-sm">
+                        <i data-lucide="archive" class="w-4 h-4"></i>
+                        <span class="only-pt">Podem ser mantidos</span><span class="only-en">May be kept</span>
+                    </div>
+                    <ul class="only-pt">
+                        <li>Somente dados cuja conservação seja exigida por lei ou por ordem de autoridade competente, pelo prazo exigido, e depois eliminados.</li>
+                        <li>Registros técnicos de acesso e segurança mantidos pelos provedores de infraestrutura, apagados automaticamente conforme os prazos desses provedores.</li>
+                        <li>O pedido de exclusão em si (seu e-mail e a data), como comprovação do atendimento.</li>
+                    </ul>
+                    <ul class="only-en">
+                        <li>Only data we are required to keep by law or by order of a competent authority, for the required period, then deleted.</li>
+                        <li>Technical access and security logs held by infrastructure providers, automatically erased on those providers' schedules.</li>
+                        <li>The deletion request itself (your email and the date), as proof that it was handled.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="mt-5 only-pt">Cópias de segurança do banco de dados podem levar até <strong>30 dias adicionais</strong> para serem sobrescritas. Durante esse período, os dados ficam inacessíveis e não são usados para nenhuma finalidade.</p>
+            <p class="mt-5 only-en">Database backups may take up to <strong>30 additional days</strong> to be overwritten. During that time the data is inaccessible and not used for any purpose.</p>
+        </section>
+
+        <!-- 3. Other notes -->
+        <section id="good-to-know" class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-10">
+            <h2><span class="num">3</span>
+                <span class="only-pt">Bom saber</span>
+                <span class="only-en">Good to know</span>
+            </h2>
+            <div class="only-pt">
+                <ul>
+                    <li><strong>Dados no seu dispositivo</strong> são apagados quando você sai da conta no aplicativo ou o desinstala.</li>
+                    <li><strong>Desinstalar o aplicativo não exclui</strong> os dados guardados nos nossos servidores — para isso, faça a solicitação acima.</li>
+                    <li><strong>Só quer parar a coleta?</strong> Basta desligar o rastreamento no aplicativo; nenhuma nova localização será enviada.</li>
+                    <li><strong>Sua conta Google não é afetada.</strong> Excluímos apenas os dados do MonAmie; sua conta Google e os grupos da sua organização continuam como estão.</li>
+                    <li>Se você continuar fazendo parte de um grupo da sua organização e voltar a entrar no aplicativo, um novo perfil será criado.</li>
+                </ul>
+                <p>Mais detalhes na nossa <a href="/privacy/?lang=pt">Política de Privacidade</a>.</p>
+            </div>
+            <div class="only-en">
+                <ul>
+                    <li><strong>Data on your device</strong> is erased when you sign out of the app or uninstall it.</li>
+                    <li><strong>Uninstalling the app does not delete</strong> the data stored on our servers — use the request above for that.</li>
+                    <li><strong>Just want to stop collection?</strong> Switch tracking off in the app; no new locations will be sent.</li>
+                    <li><strong>Your Google account is not affected.</strong> We only delete MonAmie data; your Google account and your organization's groups stay as they are.</li>
+                    <li>If you are still in one of your organization's groups and sign in to the app again, a new profile will be created.</li>
+                </ul>
+                <p>More details in our <a href="/privacy/?lang=en">Privacy Policy</a>.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 py-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+        <span>&copy; <span id="year"></span> MonAmie. <span class="only-pt">Todos os direitos reservados.</span><span class="only-en">All rights reserved.</span></span>
+        <div class="flex items-center gap-4">
+            <a href="/" class="hover:text-brand-700 transition-colors"><span class="only-pt">Início</span><span class="only-en">Home</span></a>
+            <a href="/privacy/" class="hover:text-brand-700 transition-colors"><span class="only-pt">Política de Privacidade</span><span class="only-en">Privacy Policy</span></a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        lucide.createIcons();
+
+        // Language toggle
+        const TITLES = {
+            pt: 'Exclusão de conta — MonAmie',
+            en: 'Account deletion — MonAmie',
+        };
+
+        function applyLang(lang) {
+            const root = document.documentElement;
+            root.classList.remove('lang-pt', 'lang-en');
+            root.classList.add('lang-' + lang);
+            root.lang = lang === 'pt' ? 'pt-BR' : 'en-US';
+            document.title = TITLES[lang];
+            document.querySelectorAll('.mailto-btn').forEach((a) => {
+                a.href = a.dataset['mailto' + (lang === 'pt' ? 'Pt' : 'En')];
+            });
+            document.querySelectorAll('.lang-btn').forEach((btn) => {
+                const active = btn.dataset.setLang === lang;
+                btn.classList.toggle('bg-white', active);
+                btn.classList.toggle('text-brand-700', active);
+                btn.classList.toggle('shadow-sm', active);
+                btn.classList.toggle('text-slate-500', !active);
+                btn.setAttribute('aria-pressed', String(active));
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.setLang;
+                applyLang(lang);
+                try { localStorage.setItem('monamie-privacy-lang', lang); } catch (e) {}
+                try {
+                    const url = new URL(location.href);
+                    url.searchParams.set('lang', lang);
+                    history.replaceState(null, '', url);
+                } catch (e) {}
+            });
+        });
+
+        applyLang(document.documentElement.classList.contains('lang-en') ? 'en' : 'pt');
+    </script>
+</body>
+</html>
